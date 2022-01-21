@@ -1,0 +1,26 @@
+.icons-container{
+  padding-top: 0.2rem;
+}
+
+.icons-container-inner{
+    padding: 0rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .icon{
+    margin: 0 0.4rem;
+    cursor: pointer;
+  }
+
+  .icons-container-inner > div{
+      padding: 0 0.2rem;
+  }
+
+  .icons-container-inner > div > span{
+    font-weight: bolder;
+  }
+  
+  .icon:hover{
+    transform: scale(1.3);
+  }

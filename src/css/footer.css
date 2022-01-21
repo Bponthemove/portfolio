@@ -1,0 +1,29 @@
+footer{
+    grid-area: footer;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #586f7c;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.copyright{
+      color: #fdfffc;
+  }
+
+  .contact-container{
+      width: 15rem;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+  }
+
+  .contact-container > *{
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+  }
+
+  .contact-container > *:hover{
+      transform: scale(1.1);
+  }

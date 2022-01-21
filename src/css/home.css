@@ -1,0 +1,396 @@
+.main-home{
+    overflow-y: overlay;
+}
+
+.section{
+    height: 88vh;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-toggle{
+    background-color: #eec170;
+}
+
+.section-h1{
+    padding: 1rem 3rem 0 1rem;
+    margin-left: 11rem;
+}
+
+.section-h3{
+    padding: 1rem 3rem;
+}
+
+.section-p{
+    padding: 1rem 3rem;
+}
+
+/*---------------Intro section---------------*/
+
+.hobbies-container{
+    height: 15vh;
+    margin: 15vh 0;
+    display: grid;
+}
+
+.hobbies-container-laptop{
+    margin: 7vh 0;
+}
+
+.hobbies-background, .hobbies-intro-appear{
+    grid-area: 1/1;
+}
+
+/*--seperate div for background so you can style it without affecting the hobbies-intro-appear class--*/
+
+.hobbies-background{
+    height: 23vh;
+    opacity: 0.2;
+    background: url('../data/images/intro/background.jpg');
+    background-size: cover;
+}
+
+.hobbies-intro-appear{
+    font-family: 'Knewave', cursive;
+    margin: 1.5vh auto;
+    height: 20vh;
+    width: 80vw;
+    box-shadow: #586f7c 0px 2px 4px 0px inset;
+    border-radius: 1.2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hobbies-intro-line{
+    width: 1vw;
+    height: 15vh;
+    margin-right: 1rem;
+    border-right: 1px solid #a8bac5;    
+}
+
+.hobbies-intro-appear > span{
+    width: 7rem;
+    font-size: 1.4rem;
+}
+
+.hobbies-intro-appear > img{
+    text-decoration: none;
+    width: 18%;
+    height: auto;
+}
+
+.hobbies-intro-span, .hobbies-intro-img1, .hobbies-intro-img2{
+    animation: oneArmBanditRoll 8s ease-in-out;
+    -webkit-animation: oneArmBanditRoll 8s ease-in-out;
+    -moz-animation: oneArmBanditRoll 8s ease-in-out;
+    -o-animation: oneArmBanditRoll 8s ease-in-out;
+    -ms-animation: oneArmBanditRoll 8s ease-in-out;
+}
+
+/*---------------About section---------------*/
+
+.about-item-container{
+    margin: 1rem 3rem;
+    padding: 1rem;
+    box-shadow: #586f7c 0px 2px 8px 0px;
+    background-color: #F7E0B2;
+    border-radius: 1.2rem;
+    animation: fadeIn 0.2s;
+    -webkit-animation: fadeIn 0.2s;
+    -moz-animation: fadeIn 0.2s;
+    -o-animation: fadeIn 0.2s;
+    -ms-animation: fadeIn 0.2s;
+    overflow-y: scroll;
+}
+
+.about-item-container-grid{
+    display: grid;
+    height: 50vh;
+}
+
+.about-item-container-flex{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.about-item-container-landscape{
+    height: 35vh;
+}
+
+.about-item-container-portrait{
+    height: 50vh;
+}
+
+/* display grid and than grid area 1/1 so that you end up with 1 column and 1 row for two child divs, 
+which are than on top of each other */
+.about-img-container, .about-text-container{
+    grid-area: 1/1;
+}
+
+.about-text-container{
+    white-space: pre-line;
+}
+
+.about-text-container-flex{
+    flex: 2;
+}
+
+.about-text-container > h5{
+    padding-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.about-text-container > p{
+    font-size: 0.8rem;
+}
+
+.about-img-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.about-img-container-touch-portrait{
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.about-img-container-touch-landscape{
+    flex: 1;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.image1{
+    border-radius: 1.2rem;
+    opacity: 0.1;
+    width: 25%;
+    height: auto;
+}
+
+.image2{
+    border-radius: 1.2rem;
+    opacity: 0.1;
+    width: 34%;
+    height: auto;
+}
+
+.image1-laptop{
+    width: 20%;
+}
+
+.image2-laptop{
+    width: 18%;
+}
+
+.image1-portrait{
+    width: 55%;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.image2-portrait{
+    width: 70%;
+    opacity: 0.8;
+}
+
+.image1-landscape{
+    width: 50%;
+    opacity: 0.8;
+}
+
+.image2-landscape{
+    width: 45%;
+    opacity: 0.8;
+}
+
+.image-hidden{
+    display: none;
+}
+
+@media (hover: hover) {
+    .about-img-container > img:hover {
+        opacity: 1;
+        transition: opacity 0.2s ease-in;
+        transition: box-shadow 0.2s ease-in;
+        z-index: 999;
+        box-shadow: #586f7c 0px 2px 8px 0px;
+    }
+}
+
+.about-btn-container{
+    margin: 0 auto;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.about-btn-container > button{
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: #586f7c;
+    color: #eec170;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.about-btn-container > button:hover{
+    background-color: #3F4A4F;
+}
+
+/*---------------Skills section---------------*/
+
+.skills-list-container{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 3rem;
+}
+
+.dev-skills-container-laptop{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    column-gap: 1rem;  
+}
+
+.skills-dev{
+    padding-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+}
+
+.skills-dev > p{
+    padding-left: 1rem;
+}
+
+.life-skill{
+    padding-bottom: 1rem;
+}
+
+/*---------------Code section---------------*/
+
+.code-container{
+    max-height: 56vh;
+    margin: 0 1rem;
+    overflow-y: scroll;
+}
+
+.code-block-container{
+    background-color: #F3D191;
+    display: flex;
+    align-items: center;
+    margin: 1rem 3rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+    box-shadow: #586f7c 0px 2px 8px 0px;
+    opacity: 0.4;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+    /* stop pointer events on parent than enable them on the children where you want it. Than you get the hover effect on the parent when you hover the children. */
+}
+
+@media (hover: hover) {
+    .code-block-container:hover{
+        opacity: 1;
+    }
+}
+
+.code-block-container-right{
+    background-color: #F7E0B2;
+    flex-direction: row-reverse;
+}
+
+.code-block-container-portrait{
+    opacity: 0.9;
+}
+
+.code-img-container > img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 0.8rem;
+    transition: all 0.2s ease-in-out;
+    pointer-events: auto;
+}
+
+@media (hover: hover) {
+    .code-block-container:hover > a > .img-code{
+        transform: scale(1.1);
+    }
+}
+
+.code-block-text-container{
+    padding: 0 1rem;
+    max-width: 85w;
+}
+
+.code-block-title{
+    padding-bottom: 0.3rem;
+}
+
+.code-block-text{
+    font-size: 0.9rem;
+}
+
+.code-block-link-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.code-block-link-container > a{
+    text-decoration: none;
+    max-width: fit-content;
+    margin: 0.2rem 0;
+    font-style: italic;
+    color: #586f7c;
+    transition: color 0.2s ease-in;
+    pointer-events: auto;
+}
+
+@media (hover: hover) {
+    .code-block-link-container > a:hover{
+        color: black;
+    }
+}
+
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity: 1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity: 1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity: 1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity: 1;}
+  }
+
+  @keyframes oneArmBanditRoll {
+        0%, 5% {   transform: translate(0, -20vh);
+                    opacity: 0;}
+        50% {       transform: translate(0,0);
+                    opacity: 1;}
+        95%, 100% { transform: translate(0, 20vh);
+                    opacity: 0;}
+  }
+

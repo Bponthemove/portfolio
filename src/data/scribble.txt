@@ -1,0 +1,58 @@
+//skills
+{pathname: '/', search: '', hash: '#skills', state: null, key: '9xxybg45'}
+NavLinks.js:13 1661
+
+//to blog from skills
+{pathname: '/blog', search: '', hash: '', state: null, key: '1pm0sulc'}
+NavLinks.js:13 1661
+Hobbies.js:26 unmount
+
+//back to home
+{pathname: '/', search: '', hash: '', state: null, key: '1libwwsv'}
+NavLinks.js:13 1661
+Hobbies.js:10 mount
+
+{   intro wide-min
+    "x": 0,
+    "y": 746.984375,
+    "width": 983,
+    "height": 632.390625,
+    "top": 746.984375,
+    "right": 983,
+    "bottom": 1379.375,
+    "left": 0
+}
+
+{   intro wide
+    "x": 0,
+    "y": 1134.59375,
+    "width": 1591,
+    "height": 1020,
+    "top": 1134.59375,
+    "right": 1591,
+    "bottom": 2154.59375,
+    "left": 0
+}
+
+{   about wide-min
+    "x": 0,
+    "y": 114.984375,
+    "width": 983,
+    "height": 632.390625,
+    "top": 114.984375,
+    "right": 983,
+    "bottom": 747.375,
+    "left": 0
+}
+
+{   about wide
+    "x": 0,
+    "y": 114.59375,
+    "width": 1591,
+    "height": 1020,
+    "top": 114.59375,
+    "right": 1591,
+    "bottom": 1134.59375,
+    "left": 0
+}
+

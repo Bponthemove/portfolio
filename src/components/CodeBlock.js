@@ -1,0 +1,32 @@
+import React, { useContext } from 'react'
+import { DataContext } from '../context/DataContext'
+import { code } from '../data/textData'
+
+export const CodeBlock = () => {
+    const { orientation } = useContext(DataContext)
+    
+    return (
+        code.map((item, index) => 
+            <div key={ index } className={  index % 2 === 0 && orientation === 'portrait' ? 'code-block-container code-block-container-portrait' 
+                                            : index % 2 === 0 && orientation === 'landscape' ? 'code-block-container'
+                                            : index % 2 !== 0 && orientation === 'portrait' ? 'code-block-container code-block-container-right code-block-container-portrait' 
+                                            : 'code-block-container code-block-container-right'
+                                        }
+            >
+                <a href={ item.appLink } target="_blank" rel="noreferrer" className='code-img-container'>
+                    <img src={ item.img } alt={ item.img } className='img-code'></img>
+                </a>
+                <div className='code-block-text-container'>
+                    <h5 className='code-block-title'>{ item.title }</h5>
+                    <p className='code-block-text'>{ item.text }</p>
+                    <div className='code-block-link-container'>
+                        <a href={ item.codelink1 } target="_blank" rel="noreferrer">{ item.codelink1Text }</a>
+                        <a href={ item.codelink2 } target="_blank" rel="noreferrer">{ item.codelink2Text }</a>
+                    </div>
+                </div>    
+            </div>
+        )
+    )
+        
+}
+

@@ -1,0 +1,76 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html, body{
+  width: 100vw;
+  font-family: 'Lora', serif;
+  letter-spacing: 0.6px;
+  background-color: #fdfffc; 
+  /* overflow: hidden; */
+}
+
+.app{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 
+    'header'
+    'navbar'
+    'main'
+    'footer';
+}
+
+main{
+  grid-area: main;
+  overflow-y: hidden;
+}
+
+#mainNavClosed *{
+  opacity: 1;
+}
+
+#mainNavOpen *{
+  opacity: 0.6;
+}
+
+.login-form{
+  grid-area: main;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 0;
+}
+
+.signup-form{
+  grid-area: main;
+  padding-top: 2rem;
+  z-index: 0;
+}
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0.4rem;  
+}
+
+::-webkit-scrollbar-thumb {
+  background: #586f7c; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2f4550; 
+  box-shadow: inset 0 0 5px #586f7c;
+}
+
+
+
+
+

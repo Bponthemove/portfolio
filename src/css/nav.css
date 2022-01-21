@@ -1,0 +1,148 @@
+.nav-img{
+    position: absolute;
+    top: 0.1rem;
+    left: 1rem;
+    z-index: 999;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+.nav-img-mob{
+    display: none;
+}
+
+.nav-pc{
+    grid-area: navbar;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0 1rem 0 12rem;
+    background-color: #586f7c;
+    opacity: 0.8rem;
+    display: flex;
+}
+
+.nav-personal-container{
+    flex: 1 1 auto;
+    font-family: 'Satisfy', cursive;
+    font-size: 1.5rem;
+    color: #fdfffc;
+    padding: 0 0.5rem;
+    width: 35%;
+    transform: rotate(-3deg);
+}
+
+.nav-links-pc{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links-pc > li{
+    text-decoration: none;
+}
+
+.nav-mobile{
+    grid-area: navbar;
+    background-color: #586f7c;
+    padding-right: 2rem;
+    display: flex; 
+    justify-content: flex-end; 
+}
+
+.nav-links-mobile-closed{
+    position: fixed;
+    background-color: #586f7c;
+    right: -60px;
+    top: 3.2rem;
+    width: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav-links-mobile-open{
+    position: fixed;
+    background-color: #586f7c;
+    right: 0px;
+    top: 3.2rem;
+    width: 40%;
+    border-radius: 0px 0px 0px 10px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.6s ease;  
+    cursor: pointer;  
+    z-index: 999;
+}
+
+.nav-links-mobile-open > li{
+    padding: 1rem;
+}
+
+.nav-pc > div{
+    align-self: center;
+}
+
+.nav-pc > ul{
+    flex: 3 3 auto;
+    display: flex;
+    width: 100%;
+    list-style: none;
+}
+  
+.nav-link{
+    text-decoration: none;
+    color: #fdfffc;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0rem 1.5rem;
+    transition: background-color 0.3s ease-in;
+}
+
+.nav-hashlink{
+    font-weight: 400;
+}
+  
+@media (hover: hover) {
+    .nav-link:hover{
+        color: #e71d36;
+    }
+}
+  
+.nav-link.active, .nav-mobile.active{
+    border: none;
+    background-color: #fdfffc;
+    color: #011627;
+    font-size: 1.2rem;
+    cursor: default;
+}
+
+.selected{
+    background-color: #fdfffc;
+    color: #011627;
+    cursor: default;
+}
+
+#selected-orange, .selected-orange{
+    background-color: #eec170;
+}
+
+.dimmed{
+    color: #9fa9af;
+}
+
+.off{
+    visibility: hidden;
+}
+
+.hamburger-container{
+    text-align: end;
+}
+
+.hidden{
+    display: none;
+}
