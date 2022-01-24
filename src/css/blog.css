@@ -166,9 +166,11 @@
   transition: transform 0.12s ease-in-out, color 0.12s ease-in-out;
 }
 
-.new-post-button:hover{
-  transform: scale(1.05);
-  color: #011627;
+@media (hover: hover) {
+  .new-post-button:hover{
+    transform: scale(1.05);
+    color: #011627;
+  }
 }
 
 .search-mob{

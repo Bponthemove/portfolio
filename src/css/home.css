@@ -26,7 +26,7 @@
     padding: 1rem 3rem;
 }
 
-/*---------------Intro section---------------*/
+/*------------------------------------Intro section--------------------------------------------------------------------------------*/
 
 .hobbies-container{
     height: 15vh;
@@ -90,7 +90,7 @@
     -ms-animation: oneArmBanditRoll 8s ease-in-out;
 }
 
-/*---------------About section---------------*/
+/*-------------------------------------About section--------------------------------------------------------------------------------*/
 
 .about-item-container{
     margin: 1rem 3rem;
@@ -246,7 +246,7 @@ which are than on top of each other */
     background-color: #3F4A4F;
 }
 
-/*---------------Skills section---------------*/
+/*---------------------------------------Skills section--------------------------------------------------------------------------*/
 
 .skills-list-container{
     display: flex;
@@ -275,7 +275,7 @@ which are than on top of each other */
     padding-bottom: 1rem;
 }
 
-/*---------------Code section---------------*/
+/*-------------------------------------------Code section-------------------------------------------------------------------------*/
 
 .code-container{
     max-height: 56vh;
@@ -354,9 +354,27 @@ which are than on top of each other */
     pointer-events: auto;
 }
 
+.tooltip{
+    display: none;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background-color: #586f7c;
+    color: #fdfffc;
+    position: absolute;
+    z-index: -1;
+}
+
+.tooltip-visible{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+} 
+
 @media (hover: hover) {
     .code-block-link-container > a:hover{
-        color: black;
+        color: #011627;
     }
 }
 

@@ -7,7 +7,7 @@ import { blog } from '../data/textData'
 import mern from '../data/images/MERN-stack.png'
 
 const Blog = () => {
-    const { deviceClass, orientation, click, search, setSearch, posts, isLoading, fetchError, blogRef } = useContext(DataContext)
+    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, fetchError, blogRef } = useContext(DataContext)
 
     return (
         <>
@@ -28,12 +28,20 @@ const Blog = () => {
                     </div>
                     <div className='main-right'>
                         <ul className={ deviceClass === 'mobile' ? 'main-list main-list-mob' : 'main-list' }>
-                            { posts.map(post => (
-                                <PostInList
-                                    key={ post._id }  
-                                    post={ post }
-                                />    
-                            )) }
+                            { search === '' ? 
+                                posts.map(post => (
+                                    <PostInList
+                                        key={ post._id }  
+                                        post={ post }
+                                    />    
+                                )) :
+                                filteredPosts.map(filteredPost => (
+                                    <PostInList
+                                        key={ filteredPost._id }  
+                                        post={ filteredPost }
+                                    />
+                                ))
+                            }
                         </ul>
                         <div className='main-right-bottom-container'>
                             <Link className='new-post-button' to='/newpost'>New Post</Link>
@@ -47,7 +55,11 @@ const Blog = () => {
                                     id='input'
                                     placeholder='search'
                                     value={ search }
-                                    onChange={ e => setSearch(e.target.value) }
+                                    onChange={ e => { 
+                                        // if (/^[a-zA-Z]+$/.test(e.target.value)) { (does not let me delete first character??)
+                                            setSearch(e.target.value) 
+                                        } 
+                                    }
                                 />
                             </form>
                         </div>

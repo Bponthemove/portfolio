@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { IconContext } from 'react-icons/lib'
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaGithub } from 'react-icons/fa'
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaGithub, FaGit } from 'react-icons/fa'
 import { SiJavascript, SiMongodb, SiExpress } from 'react-icons/si'
 import { DataContext } from '../context/DataContext'
 
@@ -46,6 +46,10 @@ export const SkillsDevelopment = () => {
                 <div className='skills-dev'>
                     <FaGithub/>
                     <p>Github</p>
+                </div>
+                <div className='skills-dev'>
+                    <FaGit/>
+                    <p>Git</p>
                 </div>
             </div>
         </IconContext.Provider>

@@ -11,17 +11,18 @@ import axios from 'axios'
 export const DataContext = createContext({})
 
 export const DataProvider = ({children}) => {
-    Userfront.init("vbqdqvnq");
-    const baseUrl = 'https://git.heroku.com/guarded-bastion-37396.git'
 
+    const dataUrl = 'https://git.heroku.com/guarded-bastion-37396.git/home'
+    
+    const [LogoutButton, setLogoutButton] = useState(null)
+    const [token, setToken] = useState(null)
     const [search, setSearch] = useState('')
+    const [filteredPosts, setFilteredPosts] = useState([])
     const [comment, setComment] = useState('')
-    const [posts, setPosts] = useState([])
     const [newPostText, setNewPostText] = useState('')
     const [newPostTitle, setNewPostTitle] = useState('')
     const [submittedId, setSubmittedId] = useState(null)
     const [deletedId, setDeletedId] = useState(null)
-    const [dataUrl, setDataUrl] = useState(`${baseUrl}/home`)
     const [updatedId, setupdatedId] = useState(null)
     const [commentClicked, setCommentClicked] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
@@ -37,8 +38,8 @@ export const DataProvider = ({children}) => {
     const blogRef = useRef(null)
     const navigate = useNavigate()
     const location = useLocation()
-    const { current : currentUrl, prev : prevUrl } = useCurrentUrl(submittedId, deletedId, location)
-    const { isLoading, fetchError, data } = useAxiosFetch(dataUrl, submittedId, deletedId, updatedId, currentUrl)
+    const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
+    const { isLoading, fetchError, posts } = useAxiosFetch(dataUrl, submittedId, deletedId, updatedId, currentUrl)
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
     const { width, height } = useScreenDetails()[1]
 
@@ -50,24 +51,25 @@ export const DataProvider = ({children}) => {
     ]    
 
 //********** useEffects *************//
+        //connecting to userfront
+    useEffect(() => {
+      auth()
+      setToken(Userfront.accessToken())
+    }, [loggedIn])
 
         //setting offset on home route so that all references are right
     useEffect(() => {
-      if (!isLoading && currentUrl === '/') {
+      if (currentUrl === '/') {
         const { top } = introRef.current.getBoundingClientRect()
         setOffset(top + 2)
+        console.log(4)
       }
-    }, [isLoading, orientation, width, height, currentUrl])
+    }, [orientation, width, height, currentUrl])
 
         //check if anybody is logged in
     useEffect(() => {
-      Userfront.accessToken() ? setLoggedIn(true) : setLoggedIn(false)  
-    }, [Userfront.accessToken()])
-        
-        //if there is new data then update state
-    useEffect(() => {
-        if (data.length !== 0) setPosts(data)
-    }, [data, currentUrl === '/blog'])
+      token === null || token === undefined || Object.entries(token).length === 0 ? setLoggedIn(false) : setLoggedIn(true)  
+    }, [token])
 
       //set section back to intro when clicking blog
     useEffect(() => {
@@ -76,7 +78,7 @@ export const DataProvider = ({children}) => {
 
       //on browser refresh, go back to top of home
     useEffect(() => {
-      if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+      if (performance.getEntriesByType('navigation')[0].type === 'reload') {
         if (location.pathname === '/') {
           navigate('/#intro')
           setSectionActive('intro')
@@ -90,10 +92,28 @@ export const DataProvider = ({children}) => {
       }
     }, [])
 
-//logout button
-    const LogoutButton = Userfront.build({
-      toolId: "ddbloa"
-    })
+      //search blog posts
+    useEffect(() => {
+      if (search !== '') {
+        const results = posts.filter(post => {
+          return  post.Text.toLowerCase().includes(search.toLowerCase()) || post.Title.toLowerCase().includes(search.toLowerCase()) 
+        })
+        setFilteredPosts(results)
+      } else{
+        if (filteredPosts.length !== 0) setFilteredPosts([])
+      } 
+    }, [search])
+
+//authorization init
+    const auth = async() => {
+      try {
+        const res = await axios.get('/auth')
+        Userfront.init(res.data.tenantId)
+        setLogoutButton(Userfront.build({ toolId: res.data.toolId }))
+      } catch(err) {
+        console.log(err)
+      } 
+    }
 
 //*******************Handlers*********************************
   
@@ -129,7 +149,7 @@ export const DataProvider = ({children}) => {
         const nowFormatted = date.format(now, 'DD/MM/YYYY HH:mm')
         const newPost = {Title: newPostTitle, Text: newPostText, Time: nowFormatted}
         try {
-          const response = await axios.post(`${baseUrl}/newpost`, newPost, {
+          const response = await axios.post(`https://git.heroku.com/guarded-bastion-37396.git/newpost`, newPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -159,12 +179,11 @@ export const DataProvider = ({children}) => {
       if (loggedIn) {
         let newNumber
         let updatedPost
-        const postToUpdate = data.find(post => post._id === postId)
+        const postToUpdate = posts.find(post => post._id === postId)
         upOrDown === 'up' ? newNumber = postToUpdate.Likes + 1 : newNumber = postToUpdate.Dislikes + 1 
         upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} : updatedPost = {...postToUpdate, Dislikes : newNumber}
-        console.log(updatedPost)
         try {
-          const response = await axios.put(`${baseUrl}/updatepost/${updatedPost._id}`, updatedPost, {
+          const response = await axios.put(`https://git.heroku.com/guarded-bastion-37396.git/updatepost/${updatedPost._id}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -210,7 +229,7 @@ export const DataProvider = ({children}) => {
         return
       } else {
         //check token auth first
-        const postToUpdate = data.find(post => post._id === postId)
+        const postToUpdate = posts.find(post => post._id === postId)
         const { Comments } = postToUpdate
         const now = new Date()
         const nowFormatted = date.format(now, 'DD/MM/YYYY HH:mm')
@@ -219,7 +238,7 @@ export const DataProvider = ({children}) => {
         const updatedPost = {...postToUpdate, Comments: updatedComments}
         console.log(updatedPost)
         try {
-          const response = await axios.put(`${baseUrl}/updatepost/${postId}`, updatedPost, {
+          const response = await axios.put(`https://git.heroku.com/guarded-bastion-37396.git/updatepost/${postId}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -240,7 +259,7 @@ export const DataProvider = ({children}) => {
     const deleteHandle = async (postId) => {
       if (loggedIn) {
         try {
-          const response = await axios.delete(`${baseUrl}/deletepost/${postId}`, {
+          const response = await axios.delete(`https://git.heroku.com/guarded-bastion-37396.git/deletepost/${postId}`, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -266,15 +285,14 @@ export const DataProvider = ({children}) => {
 
     return (
         <DataContext.Provider value={{
-            posts, isLoading, deleteHandle, fetchError, 
-            submitHandle, setNewPostText, newPostText, 
-            newPostTitle, setNewPostTitle, search, 
+            posts, filteredPosts, isLoading, deleteHandle, fetchError, 
+            submitHandle, setNewPostText, newPostText, useInterval,
+            newPostTitle, setNewPostTitle, search, blogRef,
             setSearch, thumbsHandle, orientation, touch, deviceClass,
             commentsHandle, comment, setComment, submitCommentHandle,
             inputRef, commentClicked, setCommentClicked, loggedIn, 
             setLoggedIn, LogoutButton, navigate, click, clickHandler,
             location, scrollHandler, sections, sectionActive,
-            blogRef, useInterval
         }}>
             {children}
         </DataContext.Provider>

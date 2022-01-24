@@ -31,7 +31,7 @@ const Footer = () => {
                     </Link>
                 </IconContext.Provider>
             </div>
-            { loggedIn && <LogoutButton className='logOutBtn'/> }
+            { (loggedIn && LogoutButton !== undefined) && <LogoutButton className='logOutBtn'/> }
         </footer>
     )
 }

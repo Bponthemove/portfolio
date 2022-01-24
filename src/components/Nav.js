@@ -8,7 +8,6 @@ import myImg from '../data/images/IMG_4104.jpg'
 
 const Nav = () => {
     const { orientation, deviceClass, click, clickHandler } = useContext(DataContext)
-    
 
     return (
         <>

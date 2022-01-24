@@ -66,23 +66,23 @@ const headerText = [
         text2: 'Managing situations'
     },
     {
-        text1: 'Skill:',
+        text1: 'Skills:',
         text2: 'Being assertive'
     },
     {
-        text1: 'Skill:',
+        text1: 'Skills:',
         text2: 'Understanding people'
     },
     {
-        text1: 'Skill:',
+        text1: 'Skills:',
         text2: 'Business awareness'
     },
     {
-        text1: 'Skill:',
+        text1: 'Skills:',
         text2: 'Determination'
     },
     {
-        text1: 'Skill:',
+        text1: 'Skills:',
         text2: 'Motivating others'
     }
 ]
