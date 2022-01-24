@@ -9,6 +9,7 @@ export const useAxiosFetch = (dataUrl, submittedId, deletedId, updatedId, curren
     const fetchData = async (url) => {
         try {
             const response = await axios.get(url)
+            console.log(response)
             setPosts(response.data)
             setFetchError(null)
         } catch (err) {

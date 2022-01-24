@@ -93,7 +93,8 @@
 /*-------------------------------------About section--------------------------------------------------------------------------------*/
 
 .about-item-container{
-    margin: 1rem 3rem;
+    margin: 1rem auto;
+    max-width: 1000px;
     padding: 1rem;
     box-shadow: #586f7c 0px 2px 8px 0px;
     background-color: #F7E0B2;
@@ -121,8 +122,8 @@
     height: 35vh;
 }
 
-.about-item-container-portrait{
-    height: 50vh;
+.about-item-container-flex-portrait{
+    margin: 1rem 3rem;
 }
 
 /* display grid and than grid area 1/1 so that you end up with 1 column and 1 row for two child divs, 
@@ -287,7 +288,8 @@ which are than on top of each other */
     background-color: #F3D191;
     display: flex;
     align-items: center;
-    margin: 1rem 3rem;
+    max-width: 1000px;
+    margin: 1rem auto;
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     box-shadow: #586f7c 0px 2px 8px 0px;
@@ -310,6 +312,7 @@ which are than on top of each other */
 
 .code-block-container-portrait{
     opacity: 0.9;
+    margin: 1rem 3rem;
 }
 
 .code-img-container > img{

@@ -12,7 +12,8 @@ export const DataContext = createContext({})
 
 export const DataProvider = ({children}) => {
 
-    const dataUrl = 'https://git.heroku.com/guarded-bastion-37396.git/home'
+    const server = 'https://git.heroku.com/guarded-bastion-37396.git'
+    const dataUrl = `${server}/blog`
     
     const [LogoutButton, setLogoutButton] = useState(null)
     const [token, setToken] = useState(null)
@@ -62,7 +63,6 @@ export const DataProvider = ({children}) => {
       if (currentUrl === '/') {
         const { top } = introRef.current.getBoundingClientRect()
         setOffset(top + 2)
-        console.log(4)
       }
     }, [orientation, width, height, currentUrl])
 
@@ -149,7 +149,7 @@ export const DataProvider = ({children}) => {
         const nowFormatted = date.format(now, 'DD/MM/YYYY HH:mm')
         const newPost = {Title: newPostTitle, Text: newPostText, Time: nowFormatted}
         try {
-          const response = await axios.post(`https://git.heroku.com/guarded-bastion-37396.git/newpost`, newPost, {
+          const response = await axios.post(`${server}/newpost`, newPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -183,7 +183,7 @@ export const DataProvider = ({children}) => {
         upOrDown === 'up' ? newNumber = postToUpdate.Likes + 1 : newNumber = postToUpdate.Dislikes + 1 
         upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} : updatedPost = {...postToUpdate, Dislikes : newNumber}
         try {
-          const response = await axios.put(`https://git.heroku.com/guarded-bastion-37396.git/updatepost/${updatedPost._id}`, updatedPost, {
+          const response = await axios.put(`${server}/updatepost/${updatedPost._id}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -238,7 +238,7 @@ export const DataProvider = ({children}) => {
         const updatedPost = {...postToUpdate, Comments: updatedComments}
         console.log(updatedPost)
         try {
-          const response = await axios.put(`https://git.heroku.com/guarded-bastion-37396.git/updatepost/${postId}`, updatedPost, {
+          const response = await axios.put(`${server}/updatepost/${postId}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -259,7 +259,7 @@ export const DataProvider = ({children}) => {
     const deleteHandle = async (postId) => {
       if (loggedIn) {
         try {
-          const response = await axios.delete(`https://git.heroku.com/guarded-bastion-37396.git/deletepost/${postId}`, {
+          const response = await axios.delete(`${server}/deletepost/${postId}`, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
