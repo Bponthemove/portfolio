@@ -107,7 +107,7 @@ export const DataProvider = ({children}) => {
 //authorization init
     const auth = async() => {
       try {
-        const res = await axios.get('/auth')
+        const res = await axios.get(`${server}/auth`)
         Userfront.init(res.data.tenantId)
         setLogoutButton(Userfront.build({ toolId: res.data.toolId }))
       } catch(err) {
