@@ -12,7 +12,7 @@ export const DataContext = createContext({})
 
 export const DataProvider = ({children}) => {
 
-    const server = 'https://git.heroku.com/guarded-bastion-37396.git'
+    const server = 'https://guarded-bastion-37396.herokuapp.com'
     const dataUrl = `${server}/blog`
     
     const [LogoutButton, setLogoutButton] = useState(null)
