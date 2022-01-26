@@ -4,15 +4,25 @@ import { NavLinks } from "./NavLinks"
 import { IconContext } from "react-icons"
 import { FaBars, FaTimes } from 'react-icons/fa'
 import '../css/nav.css'
-import myImg from '../data/images/IMG_4104.jpg'
+import { Image } from 'cloudinary-react'
 
 const Nav = () => {
-    const { orientation, deviceClass, click, clickHandler } = useContext(DataContext)
+    const { orientation, deviceClass, click, clickHandler, cloudName} = useContext(DataContext)
 
     return (
         <>
 {/* image absolute over the nav bar */}
-        <img src={ myImg } alt='Me' className={ deviceClass !== 'mobile' ? "nav-img" : "nav-img nav-img-mob" }/>
+        { cloudName && deviceClass !== 'mobile' &&
+            <Image  cloudName={ cloudName }
+                    publicId="Portfolio/images/IMG_4104_rmar02.jpg" 
+                    alt='Me'
+                    quality='auto'
+                    className="nav-img"
+            /> 
+        }
+        { !cloudName && deviceClass !== 'mobile' &&
+            <div className='nav-img nav-img-loading'>...</div>
+        }
         <nav className={ deviceClass !== 'mobile' ? 'nav-pc' : 'nav-mobile' }>
             { (deviceClass === 'mobile' || orientation === 'landscape') &&
             <div className="nav-personal-container">

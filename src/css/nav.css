@@ -1,15 +1,20 @@
 .nav-img{
     position: absolute;
-    top: 0.1rem;
+    top: 0.6rem;
     left: 1rem;
     z-index: 999;
-    width: 8rem;
-    height: 8rem;
+    width: 7.5rem;
+    height: 7.5rem;
     border-radius: 50%;
 }
 
-.nav-img-mob{
-    display: none;
+.nav-img-loading{
+    background-color: #586f7c;
+    color: #fdfffc;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-pc{
@@ -27,7 +32,7 @@
     font-family: 'Satisfy', cursive;
     font-size: 1.5rem;
     color: #fdfffc;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
     width: 35%;
     transform: rotate(-3deg);
 }

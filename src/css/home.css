@@ -1,12 +1,27 @@
 .main-home{
     overflow-y: overlay;
+    overflow-x: hidden;
 }
 
 .section{
+    position: relative;
     height: 88vh;
     padding: 1rem 0;
     display: flex;
     flex-direction: column;
+}
+
+.section:before{
+    content: '';
+    position: absolute;
+    background: url('https://res.cloudinary.com/dnytpilwo/image/upload/v1643197298/Portfolio/images/mountain-range_auqnyz.png') no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.1;
 }
 
 .section-toggle{
@@ -18,8 +33,16 @@
     margin-left: 11rem;
 }
 
+.section-h1-mob{
+    margin: 0 auto;
+}
+
 .section-h3{
     padding: 1rem 3rem;
+}
+
+.section-h3-mob{
+    display: none;
 }
 
 .section-p{
@@ -38,6 +61,10 @@
     margin: 7vh 0;
 }
 
+.hobbies-container-mob{
+    margin: 1rem 0;
+}
+
 .hobbies-background, .hobbies-intro-appear{
     grid-area: 1/1;
 }
@@ -47,21 +74,24 @@
 .hobbies-background{
     height: 23vh;
     opacity: 0.2;
-    background: url('../data/images/intro/background.jpg');
+    background: url('https://res.cloudinary.com/dnytpilwo/image/upload/v1643104207/Portfolio/images/intro/background_difhh7.jpg');
     background-size: cover;
 }
 
 .hobbies-intro-appear{
-    font-family: 'Knewave', cursive;
     margin: 1.5vh auto;
     height: 20vh;
     width: 80vw;
     box-shadow: #586f7c 0px 2px 4px 0px inset;
     border-radius: 1.2rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     overflow: hidden;
+}
+
+.hobbies-intro-appear-mob{
+    width: 95vw;
 }
 
 .hobbies-intro-line{
@@ -71,7 +101,17 @@
     border-right: 1px solid #a8bac5;    
 }
 
-.hobbies-intro-appear > span{
+.hobbies-intro-span-static{
+    font-family: 'Knewave', cursive;
+    font-size: 1.1rem;
+}
+
+.hobbies-intro-span-static-mob{
+    margin: 0 auto;
+}
+
+.hobbies-intro-span-rolling{
+    font-family: 'Knewave', cursive;
     width: 7rem;
     font-size: 1.4rem;
 }
@@ -82,7 +122,7 @@
     height: auto;
 }
 
-.hobbies-intro-span, .hobbies-intro-img1, .hobbies-intro-img2{
+.hobbies-animation{
     animation: oneArmBanditRoll 8s ease-in-out;
     -webkit-animation: oneArmBanditRoll 8s ease-in-out;
     -moz-animation: oneArmBanditRoll 8s ease-in-out;
@@ -91,6 +131,30 @@
 }
 
 /*-------------------------------------About section--------------------------------------------------------------------------------*/
+
+.about-btn-container{
+    margin: 0 auto;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1;
+}
+
+.about-btn-container > button{
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: #586f7c;
+    color: #eec170;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.about-btn-container > button:hover{
+    background-color: #3F4A4F;
+}
 
 .about-item-container{
     margin: 1rem auto;
@@ -118,9 +182,9 @@
     justify-content: space-between;
 }
 
-.about-item-container-landscape{
+/* .about-item-container-landscape{
     height: 35vh;
-}
+} */
 
 .about-item-container-flex-portrait{
     margin: 1rem 3rem;
@@ -224,29 +288,6 @@ which are than on top of each other */
     }
 }
 
-.about-btn-container{
-    margin: 0 auto;
-    width: 30%;
-    display: flex;
-    justify-content: space-around;
-}
-
-.about-btn-container > button{
-    text-decoration: none;
-    cursor: pointer;
-    text-align: center;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: 2rem;
-    background-color: #586f7c;
-    color: #eec170;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.about-btn-container > button:hover{
-    background-color: #3F4A4F;
-}
-
 /*---------------------------------------Skills section--------------------------------------------------------------------------*/
 
 .skills-list-container{
@@ -293,7 +334,7 @@ which are than on top of each other */
     padding: 0.25rem 0.75rem;
     border-radius: 0.5rem;
     box-shadow: #586f7c 0px 2px 8px 0px;
-    opacity: 0.4;
+    opacity: 0.6;
     transition: opacity 0.2s ease-in-out;
     pointer-events: none;
     /* stop pointer events on parent than enable them on the children where you want it. Than you get the hover effect on the parent when you hover the children. */
@@ -311,8 +352,17 @@ which are than on top of each other */
 }
 
 .code-block-container-portrait{
-    opacity: 0.9;
     margin: 1rem 3rem;
+}
+
+.code-block-container-touch{
+    opacity: 0.9;
+}
+
+.code-block-container-mob{
+    display: block;
+    padding: 1rem;
+    margin: 1rem;
 }
 
 .code-img-container > img{
@@ -321,6 +371,11 @@ which are than on top of each other */
     border-radius: 0.8rem;
     transition: all 0.2s ease-in-out;
     pointer-events: auto;
+}
+
+.code-block-container-mob > a{
+    float: right;
+    margin: 0 0 0.5rem 0.5rem;
 }
 
 @media (hover: hover) {

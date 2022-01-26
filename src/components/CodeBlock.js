@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { DataContext } from '../context/DataContext'
+import { Image } from 'cloudinary-react'
 import { code } from '../data/textData'
 
 export const CodeBlock = () => {
-    const { orientation } = useContext(DataContext)
+    const { orientation, cloudName, touch, deviceClass } = useContext(DataContext)
     const [hover, setHover] = useState(false)
     const [target, setTarget] = useState({
         top: null,
@@ -12,13 +13,18 @@ export const CodeBlock = () => {
     
     return (
         code.map((item, index) => 
-            <div key={ index } className={  index % 2 === 0 && orientation === 'portrait' ? 'code-block-container code-block-container-portrait' 
-                                            : index % 2 === 0 && orientation === 'landscape' ? 'code-block-container'
-                                            : index % 2 !== 0 && orientation === 'portrait' ? 'code-block-container code-block-container-right code-block-container-portrait' 
-                                            : 'code-block-container code-block-container-right'
+            <div key={ index } className={  index % 2 === 0 && deviceClass !== 'mobile' && !touch ? 'code-block-container' 
+                                            : index % 2 !== 0 && deviceClass !== 'mobile' && !touch ? 'code-block-container code-block-container-right'
+                                            : index % 2 === 0 && orientation === 'portrait' && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-portrait code-block-container-touch'
+                                            : index % 2 !== 0 && orientation === 'portrait' && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch'
+                                            : index % 2 === 0 && orientation === 'landscape' && touch ? 'code-block-container code-block-container-touch'
+                                            : index % 2 !== 0 && orientation === 'landscape' && touch ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch' 
+                                            : index % 2 === 0 && orientation === 'portrait' && touch ? 'code-block-container code-block-container-portrait code-block-container-touch code-block-container-mob'
+                                            :index % 2 !== 0 && orientation === 'portrait' && touch ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch code-block-container-mob'
+                                            : ''
                                         }
             >
-                <div className={ hover ? 'tooltip tooltip-visible' : 'tooltip' } style={{top: target.top, left: target.left}}>Go to App</div>
+                { !touch && <div className={ hover ? 'tooltip tooltip-visible' : 'tooltip' } style={{top: target.top, left: target.left}}>Go to App</div> }
                 <a  href={ item.appLink } target="_blank" rel="noreferrer" className='code-img-container' 
                     onMouseMove={e => {
                         setTarget({
@@ -35,7 +41,12 @@ export const CodeBlock = () => {
                         setHover(false)
                     }}
                 >
-                    <img src={ item.img } alt={ `img${ index }` } className='img-code' ></img>
+                    { cloudName && 
+                        <Image  alt={ `img${ index }` } 
+                                className='img-code' 
+                                cloudName={ cloudName }
+                                publicId={ item.img}
+                        /> }
                 </a>
                 <div className='code-block-text-container'>
                     <h5 className='code-block-title'>{ item.title }</h5>

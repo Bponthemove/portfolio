@@ -10,7 +10,7 @@ export const PostInList = ({ post }) => {
     return (
             <li className={ deviceClass === 'mobile' ? 'link link-mobile' : 'link link-pc' }>
                 <div className={ deviceClass === 'mobile' ? 'link-header link-header-mobile' : 'link-header' }>  
-                    <Link to={ `/post/${post._id}` }>
+                    <Link to={ `/blog/post/${post._id}` }>
                         <h4 className='post-title'>{ post.Title }</h4>
                     </Link>
                     <div className='icons-container'>
@@ -26,7 +26,7 @@ export const PostInList = ({ post }) => {
                     </div>
                 </div>
                 <div className='post-details-container'>
-                    <Link to={ `/post/${post._id}` }>
+                    <Link to={ `/blog/post/${post._id}` }>
                         <p className='post-time post-item'>{post.Time}</p>
                         <p className={ deviceClass !== 'pc' && orientation === 'landscape' ? 'post-text post-item post-text-laptop' : 'post-text post-item' }>
                             { post.Text }

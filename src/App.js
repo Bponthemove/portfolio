@@ -17,13 +17,13 @@ function App() {
   return (
       <div className="app">
         <DataProvider>
-          <Header title={ 'My journey into a new world' }/>
+          <Header/>
           <Nav />
           <Routes>
             <Route path='/' element={ <Home /> } />
             <Route path='/blog' element={ <Blog/> } />
-            <Route path='/newpost' element={ <NewPost /> } />
-            <Route path='/post/:id' element={ <PostPage /> } />
+            <Route path='/blog/newpost' element={ <NewPost /> } />
+            <Route path='/blog/post/:id' element={ <PostPage /> } />
             <Route path='/login' element={ <Login /> } />
             <Route path='/signup' element={ <Signup /> } />
             <Route path='/dashboard' element={ <Dashboard /> } />

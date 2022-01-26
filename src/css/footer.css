@@ -9,21 +9,25 @@ footer{
 }
 
 .copyright{
-      color: #fdfffc;
-  }
+    color: #fdfffc;
+}
 
-  .contact-container{
-      width: 15rem;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-  }
+.copyright-mob{
+    font-size: 0.5rem;
+}
 
-  .contact-container > *{
-      cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-  }
+.contact-container{
+    width: 15rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
-  .contact-container > *:hover{
-      transform: scale(1.1);
-  }
+.contact-container > *{
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.contact-container > *:hover{
+    transform: scale(1.1);
+}

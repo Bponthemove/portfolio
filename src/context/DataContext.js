@@ -12,11 +12,13 @@ export const DataContext = createContext({})
 
 export const DataProvider = ({children}) => {
 
-    const server = 'https://guarded-bastion-37396.herokuapp.com'
+    const server = ''
+    // const server = 'https://guarded-bastion-37396.herokuapp.com'
     const dataUrl = `${server}/blog`
     
     const [LogoutButton, setLogoutButton] = useState(null)
     const [token, setToken] = useState(null)
+    const [cloudName, setCloudName] = useState(null)
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [comment, setComment] = useState('')
@@ -28,7 +30,7 @@ export const DataProvider = ({children}) => {
     const [commentClicked, setCommentClicked] = useState(false)
     const [loggedIn, setLoggedIn] = useState(false)
     const [click, setClick] = useState(false)
-    const [offset, setOffset] = useState(null)
+    const [topOnInit, setTopOnInit] = useState(null)
     const [sectionActive, setSectionActive] = useState('intro')
     
     const inputRef = useRef()
@@ -42,29 +44,28 @@ export const DataProvider = ({children}) => {
     const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
     const { isLoading, fetchError, posts } = useAxiosFetch(dataUrl, submittedId, deletedId, updatedId, currentUrl)
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
-    const { width, height } = useScreenDetails()[1]
 
     const sections = [
         { link: "intro", ref: introRef },
         { link: "about", ref: aboutRef },
         { link: "skills", ref: skillsRef },
         { link: "code", ref: codeRef }
-    ]    
+    ]
 
 //********** useEffects *************//
-        //connecting to userfront
+        //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
       auth()
       setToken(Userfront.accessToken())
     }, [loggedIn])
 
-        //setting offset on home route so that all references are right
+        //setting top for home on first load so that all references are right for scrolling
     useEffect(() => {
-      if (currentUrl === '/') {
+      if (location.pathname.slice(0, 5) !== '/blog') {
         const { top } = introRef.current.getBoundingClientRect()
-        setOffset(top + 2)
-      }
-    }, [orientation, width, height, currentUrl])
+        setTopOnInit(top)
+      }      
+    }, [])
 
         //check if anybody is logged in
     useEffect(() => {
@@ -104,12 +105,13 @@ export const DataProvider = ({children}) => {
       } 
     }, [search])
 
-//authorization init
+//authorization init and env details for cloudinary
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
-        Userfront.init(res.data.tenantId)
-        setLogoutButton(Userfront.build({ toolId: res.data.toolId }))
+        Userfront.init(res.data.Userfront.tenantId)
+        setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
+        setCloudName(res.data.Cloudinary.cloudName)
       } catch(err) {
         console.log(err)
       } 
@@ -122,6 +124,8 @@ export const DataProvider = ({children}) => {
 
         //keeping track of scroll position in sections on home page
     const scrollHandler = () => {
+      let offset = 0
+      orientation === 'portrait' ? offset = topOnInit + 2 : offset = topOnInit + 4
       const { height, top } = introRef.current.getBoundingClientRect()
       if ((offset - height) < top) return setSectionActive('intro')
       if ((offset - (height * 2)) < top) return setSectionActive('about')
@@ -149,7 +153,7 @@ export const DataProvider = ({children}) => {
         const nowFormatted = date.format(now, 'DD/MM/YYYY HH:mm')
         const newPost = {Title: newPostTitle, Text: newPostText, Time: nowFormatted}
         try {
-          const response = await axios.post(`${server}/newpost`, newPost, {
+          const response = await axios.post(`${server}/blog/newpost`, newPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -158,7 +162,7 @@ export const DataProvider = ({children}) => {
           })
           if (response.status === 200 & response.data !== '') {
             setSubmittedId(response.data._id)
-            navigate(`/post/${response.data._id}`)
+            navigate(`/blog/post/${response.data._id}`)
           } else {
             alert('only the administrator can delete a blog')
             return
@@ -183,7 +187,7 @@ export const DataProvider = ({children}) => {
         upOrDown === 'up' ? newNumber = postToUpdate.Likes + 1 : newNumber = postToUpdate.Dislikes + 1 
         upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} : updatedPost = {...postToUpdate, Dislikes : newNumber}
         try {
-          const response = await axios.put(`${server}/updatepost/${updatedPost._id}`, updatedPost, {
+          const response = await axios.put(`${server}/blog/updatepost/${updatedPost._id}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -210,7 +214,7 @@ export const DataProvider = ({children}) => {
     const commentsHandle = postId => {
       if (loggedIn) {
         setCommentClicked(true)
-        navigate(`/post/${postId}`)
+        navigate(`/blog/post/${postId}`)
       } else {
         navigate('/login')
         alert('please log in to comment')
@@ -238,7 +242,7 @@ export const DataProvider = ({children}) => {
         const updatedPost = {...postToUpdate, Comments: updatedComments}
         console.log(updatedPost)
         try {
-          const response = await axios.put(`${server}/updatepost/${postId}`, updatedPost, {
+          const response = await axios.put(`${server}/blog/updatepost/${postId}`, updatedPost, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -259,7 +263,7 @@ export const DataProvider = ({children}) => {
     const deleteHandle = async (postId) => {
       if (loggedIn) {
         try {
-          const response = await axios.delete(`${server}/deletepost/${postId}`, {
+          const response = await axios.delete(`${server}/blog/deletepost/${postId}`, {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${Userfront.accessToken()}`,
@@ -292,7 +296,7 @@ export const DataProvider = ({children}) => {
             commentsHandle, comment, setComment, submitCommentHandle,
             inputRef, commentClicked, setCommentClicked, loggedIn, 
             setLoggedIn, LogoutButton, navigate, click, clickHandler,
-            location, scrollHandler, sections, sectionActive,
+            location, scrollHandler, sections, sectionActive, cloudName
         }}>
             {children}
         </DataContext.Provider>

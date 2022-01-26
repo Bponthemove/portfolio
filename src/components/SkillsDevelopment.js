@@ -11,6 +11,7 @@ export const SkillsDevelopment = () => {
         <IconContext.Provider
             value= {    deviceClass === 'pc' ? { size: '3.5rem', color: '#4880f6' }
                         : deviceClass ==='laptop/tablet' && orientation === 'portrait' ? { size: '3rem', color: '#4880f6'}
+                        : deviceClass === 'mobile' ? { size: '1.5rem', color: '#4880f6'}
                         : { size: '2.5rem', color: '#4880f6' }
                     }
         >

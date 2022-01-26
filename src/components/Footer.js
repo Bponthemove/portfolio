@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 
 const Footer = () => {
-    const { loggedIn, LogoutButton } = useContext(DataContext)
+    const { deviceClass, loggedIn, LogoutButton } = useContext(DataContext)
     
     return (
         <footer>
-            <div className='copyright'>
+            <div className={ deviceClass !== 'mobile' ? 'copyright' : 'copyright copyright-mob' }>
                 Copyright Bponthemove 2021
             </div>
             <div className='contact-container'>

@@ -34,7 +34,7 @@ export const useScreenDetails = () => {
             })
             return
         }
-        if (windowSize.width > windowSize.height && windowSize.width > 768) {
+        if (windowSize.width > windowSize.height && windowSize.width > 900) {
             setScreen({
                 orientation: 'landscape',
                 touchScreen: touch,
@@ -42,7 +42,7 @@ export const useScreenDetails = () => {
             })
             return
         }
-        if (windowSize.width < windowSize.height && windowSize.width > 768) {
+        if (windowSize.width < windowSize.height && windowSize.width >= 768) {
             setScreen({
                 orientation: 'portrait',
                 touchScreen: touch,
@@ -50,9 +50,17 @@ export const useScreenDetails = () => {
             })
             return
         }
-        if (windowSize.width < 768) {
+        if (windowSize.width < 768 && windowSize.width < windowSize.height) {
             setScreen({
-                orientation: undefined,
+                orientation: 'portrait',
+                touchScreen: true,
+                deviceClass: 'mobile' 
+            })
+            return
+        }
+        if (windowSize.width <= 900) {
+            setScreen({
+                orientation: 'landscape',
                 touchScreen: true,
                 deviceClass: 'mobile' 
             })

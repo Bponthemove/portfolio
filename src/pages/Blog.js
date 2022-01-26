@@ -1,13 +1,13 @@
 import { PostInList } from '../components/PostInList'
 import { useContext } from 'react'
 import { DataContext } from '../context/DataContext'
+import { Image } from 'cloudinary-react'
 import '../css/blog.css'
 import { Link } from 'react-router-dom'
 import { blog } from '../data/textData'
-import mern from '../data/images/MERN-stack.png'
 
 const Blog = () => {
-    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, fetchError, blogRef } = useContext(DataContext)
+    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, fetchError, blogRef, cloudName } = useContext(DataContext)
 
     return (
         <>
@@ -24,7 +24,12 @@ const Blog = () => {
                         <h2>{ blog.h2 }</h2>
                         {/* <div className={ width < 1200 && landscape ? 'main-left-img main-left-img-laptop' : 'main-left-img' }/> */}
                         <p>{ blog.p }</p>
-                        <img src={ mern } alt='MERN stack' className='main-left-image'/>
+                        { cloudName && <Image 
+                                                cloudName={ cloudName }
+                                                publicId='Portfolio/images/MERN-stack_tgwset.png'
+                                                alt='MERN stack' 
+                                                className='main-left-image'
+                                        /> }
                     </div>
                     <div className='main-right'>
                         <ul className={ deviceClass === 'mobile' ? 'main-list main-list-mob' : 'main-list' }>
@@ -44,7 +49,7 @@ const Blog = () => {
                             }
                         </ul>
                         <div className='main-right-bottom-container'>
-                            <Link className='new-post-button' to='/newpost'>New Post</Link>
+                            <Link className='new-post-button' to='/blog/newpost'>New Post</Link>
                             <form 
                                 onSubmit={ e => e.preventDefault() }
                                 className={ deviceClass === 'mobile' ? 'search-mob search' : 'search search-pc' }
