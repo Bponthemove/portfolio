@@ -58,8 +58,7 @@ export const DataProvider = ({children}) => {
       auth()
       setToken(Userfront.accessToken())
     }, [loggedIn])
-console.log(Userfront)
-console.log(loggedIn)
+
         //setting top for home on first load so that all references are right for scrolling
     useEffect(() => {
       if (location.pathname.slice(0, 5) !== '/blog') {
@@ -67,7 +66,8 @@ console.log(loggedIn)
         setTopOnInit(top)
       }      
     }, [])
-
+console.log(Userfront)
+console.log(cloudName)
         //check if anybody is logged in
     useEffect(() => {
       token === null || token === undefined || Object.entries(token).length === 0 ? setLoggedIn(false) : setLoggedIn(true)  
