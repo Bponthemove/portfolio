@@ -110,6 +110,7 @@ console.log(cloudName)
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
+        console.log(res)
         Userfront.init(res.data.Userfront.tenantId)
         setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
         setCloudName(res.data.Cloudinary.cloudName)
