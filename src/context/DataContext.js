@@ -55,8 +55,8 @@ export const DataProvider = ({children}) => {
 //********** useEffects *************//
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
-      // auth()
-      // setToken(Userfront.accessToken())
+      auth()
+      setToken(Userfront.accessToken())
     }, [loggedIn])
 
         //setting top for home on first load so that all references are right for scrolling
@@ -113,7 +113,7 @@ console.log(cloudName)
         console.log(res)
         Userfront.init(res.data.Userfront.tenantId)
         setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
-        setCloudName(res.data.Cloudinary.cloudName)
+        // setCloudName(res.data.Cloudinary.cloudName)
       } catch(err) {
         console.log(err)
       } 
