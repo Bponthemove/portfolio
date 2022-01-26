@@ -58,7 +58,8 @@ export const DataProvider = ({children}) => {
       auth()
       setToken(Userfront.accessToken())
     }, [loggedIn])
-
+console.log(Userfront)
+console.log(loggedIn)
         //setting top for home on first load so that all references are right for scrolling
     useEffect(() => {
       if (location.pathname.slice(0, 5) !== '/blog') {
