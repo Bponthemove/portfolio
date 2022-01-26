@@ -18,7 +18,7 @@ export const DataProvider = ({children}) => {
     
     const [LogoutButton, setLogoutButton] = useState(null)
     const [token, setToken] = useState(null)
-    const [cloudName, setCloudName] = useState(null)
+    const [cloudName, setCloudName] = useState('dnytpilwo')
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [comment, setComment] = useState('')
@@ -56,7 +56,7 @@ export const DataProvider = ({children}) => {
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
       auth()
-      setToken(Userfront.accessToken())
+      // setToken(Userfront.accessToken())
     }, [loggedIn])
 
         //setting top for home on first load so that all references are right for scrolling
@@ -66,8 +66,7 @@ export const DataProvider = ({children}) => {
         setTopOnInit(top)
       }      
     }, [])
-console.log(Userfront)
-console.log(cloudName)
+
         //check if anybody is logged in
     useEffect(() => {
       token === null || token === undefined || Object.entries(token).length === 0 ? setLoggedIn(false) : setLoggedIn(true)  
@@ -111,8 +110,8 @@ console.log(cloudName)
       try {
         const res = await axios.get(`${server}/auth`)
         console.log(res)
-        Userfront.init(res.data.Userfront.tenantId)
-        setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
+        // Userfront.init(res.data.Userfront.tenantId)
+        // setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
         // setCloudName(res.data.Cloudinary.cloudName)
       } catch(err) {
         console.log(err)
