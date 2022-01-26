@@ -320,8 +320,10 @@ which are than on top of each other */
 /*-------------------------------------------Code section-------------------------------------------------------------------------*/
 
 .code-container{
+    position: relative;
     max-height: 56vh;
     margin: 0 1rem;
+    overflow-x: hidden;
     overflow-y: scroll;
 }
 
@@ -336,7 +338,7 @@ which are than on top of each other */
     box-shadow: #586f7c 0px 2px 8px 0px;
     opacity: 0.6;
     transition: opacity 0.2s ease-in-out;
-    pointer-events: none;
+    cursor: pointer;
     /* stop pointer events on parent than enable them on the children where you want it. Than you get the hover effect on the parent when you hover the children. */
 }
 
@@ -376,6 +378,7 @@ which are than on top of each other */
 .code-block-container-mob > a{
     float: right;
     margin: 0 0 0.5rem 0.5rem;
+    pointer-events: auto;
 }
 
 @media (hover: hover) {
@@ -409,7 +412,6 @@ which are than on top of each other */
     font-style: italic;
     color: #586f7c;
     transition: color 0.2s ease-in;
-    pointer-events: auto;
 }
 
 .tooltip{

@@ -26,7 +26,7 @@ const SectionHome = ({ section, index }) => {
                             : text.code.h1    
                         }
                     </h1>
-                    <h3 className={ deviceClass !== 'mobile' && link === 'intro' ? 'section-h3' : 'section-h3-mob' }>
+                    <h3 className={ deviceClass === 'mobile' && link === 'intro' ? 'section-h3-mob' : 'section-h3' }>
                         {   link === 'intro' ? text.intro.h3
                             : link === 'about' ? text.about.h3
                             : link === 'skills' && deviceClass !== 'mobile' ? text.skills.h3

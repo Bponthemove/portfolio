@@ -56,8 +56,8 @@ export const DataProvider = ({children}) => {
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
       auth()
-      // setToken(Userfront.accessToken())
-    }, [loggedIn])
+      setToken(Userfront.accessToken())
+    }, [sectionActive])
 
         //setting top for home on first load so that all references are right for scrolling
     useEffect(() => {
@@ -109,12 +109,12 @@ export const DataProvider = ({children}) => {
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
-        console.log(res)
-        // Userfront.init(res.data.Userfront.tenantId)
-        // setLogoutButton(Userfront.build({ toolId: res.data.Userfront.toolId }))
-        // setCloudName(res.data.Cloudinary.cloudName)
+        console.log(res.data);
+        Userfront.init(res.data[0].Userfront_tenantId)
+        setLogoutButton(Userfront.build({ toolId: res.data[0].Userfront_toolId }))
+        setCloudName(res.data[1].Cloudinary_cloudName)
       } catch(err) {
-        console.log(err)
+        navigate('/NotFound')
       } 
     }
 

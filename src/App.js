@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Blog from "./pages/Blog";
 import NewPost from "./pages/NewPost";
 import PostPage from "./pages/PostPage";
-import Missing from "./pages/Missing";
+import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -27,7 +27,7 @@ function App() {
             <Route path='/login' element={ <Login /> } />
             <Route path='/signup' element={ <Signup /> } />
             <Route path='/dashboard' element={ <Dashboard /> } />
-            <Route path='*' element={ <Missing /> } />
+            <Route path='*' element={ <NotFound /> } />
           </Routes>
           <Footer />
         </DataProvider>

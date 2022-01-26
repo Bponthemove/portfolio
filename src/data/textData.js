@@ -117,7 +117,7 @@ const code = [
         codelink1: "https://github.com/Bponthemove/portfolio",
         codelink1Text: "* My personal app, build using React, Express, Mongo and Node (dec 2021, jan 2022).",
         codelink2: "https://github.com/Bponthemove/portfolioServer",
-        codelink2Text: "Server side code, (jan, 2022)"
+        codelink2Text: "* Server side code, (jan, 2022)"
     },
     {
         img: 'Portfolio/images/code/memory_uxhkcv.png',
