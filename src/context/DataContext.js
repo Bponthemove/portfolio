@@ -86,7 +86,7 @@ export const DataProvider = ({children}) => {
 
       //on browser refresh, go back to top of home
     useEffect(() => {
-      if (performance.getEntriesByType('navigation')[0].type === 'reload') {
+      if (window.performance.getEntriesByType('navigation')[0].type === 'reload') {
         navigate('/#intro')
         setSectionActive('intro')
         location.hash = '#intro'      
