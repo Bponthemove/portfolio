@@ -1,7 +1,7 @@
 footer{
     grid-area: footer;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.3rem;
     background-color: #586f7c;
     display: flex;
     justify-content: space-around;
@@ -10,6 +10,10 @@ footer{
 
 .copyright{
     color: #fdfffc;
+}
+
+.copyright-laptop{
+    font-size: 0.8rem;
 }
 
 .copyright-mob{
@@ -30,4 +34,8 @@ footer{
 
 .contact-container > *:hover{
     transform: scale(1.1);
+}
+
+.logOutBtn{
+    transform: scale(0.6);
 }

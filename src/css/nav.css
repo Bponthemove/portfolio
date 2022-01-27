@@ -20,8 +20,8 @@
 .nav-pc{
     grid-area: navbar;
     width: 100%;
-    min-height: 3rem;
-    padding: 0 1rem 0 12rem;
+    min-height: 2rem;
+    padding: 0 1rem 0 10rem;
     background-color: #586f7c;
     opacity: 0.8rem;
     display: flex;
@@ -30,11 +30,11 @@
 .nav-personal-container{
     flex: 1 1 auto;
     font-family: 'Satisfy', cursive;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #fdfffc;
-    padding: 0.5rem;
     width: 35%;
-    transform: rotate(-3deg);
+    transform: rotate(-4.5deg);
+    transform-origin: 30% 40%;
 }
 
 .nav-links-pc{

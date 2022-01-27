@@ -57,8 +57,10 @@ export const DataProvider = ({children}) => {
 //********** useEffects *************//
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
-      auth()
-      setToken(Userfront.accessToken())
+      if (!cloudName && !toolId) {
+        auth()
+        setToken(Userfront.accessToken())
+      }
     }, [])
 
         //setting offset for home on first load so that all references are right for scrolling
