@@ -26,7 +26,7 @@ export const useScreenDetails = () => {
 
     useEffect(() => {
         const touch = window.matchMedia("(pointer: coarse)").matches
-        if (windowSize.width > windowSize.height && !touch && windowSize.width > 1200) {
+        if (windowSize.width > windowSize.height && !touch && windowSize.width > 1400) {
             setScreen({
                 orientation: 'landscape',
                 touchScreen: false,

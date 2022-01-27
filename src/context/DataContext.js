@@ -85,16 +85,10 @@ export const DataProvider = ({children}) => {
       //on browser refresh, go back to top of home
     useEffect(() => {
       if (performance.getEntriesByType('navigation')[0].type === 'reload') {
-        if (location.pathname === '/') {
-          navigate('/#intro')
-          setSectionActive('intro')
-          location.hash = '#intro'
-          introRef.current.scrollIntoView()         
-        } else {
-          navigate('/blog')
-          setSectionActive('intro')
-          location.hash = ''
-        }
+        navigate('/#intro')
+        setSectionActive('intro')
+        location.hash = '#intro'
+        introRef.current.scrollIntoView()         
       }
     }, [])
 

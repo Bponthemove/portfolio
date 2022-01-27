@@ -9,7 +9,7 @@ const headerText = [
     },
     {
         text1: 'I love',
-        text2: 'making Bread!🥖' 
+        text2: 'making Bread!' 
     },
     {
         text1: 'I love',
