@@ -5,7 +5,7 @@
 
 .section{
     position: relative;
-    height: 88vh;
+    height: 89vh;
     padding: 1rem 0;
     display: flex;
     flex-direction: column;
@@ -21,11 +21,15 @@
     left: 0;
     bottom: 0;
     right: 0;
-    opacity: 0.1;
+    opacity: 0.05;
 }
 
 .section-toggle{
     background-color: #eec170;
+}
+
+.section-toggle:before{
+    opacity: 0.1;
 }
 
 .section-h1{
@@ -168,12 +172,13 @@
     -moz-animation: fadeIn 0.2s;
     -o-animation: fadeIn 0.2s;
     -ms-animation: fadeIn 0.2s;
-    overflow-y: scroll;
+    overflow-y: visible;
+    /* z-index: 1; */
 }
 
 .about-item-container-grid{
     display: grid;
-    height: 50vh;
+    /* height: 50vh; */
 }
 
 .about-item-container-flex{
@@ -181,10 +186,6 @@
     flex-direction: row-reverse;
     justify-content: space-between;
 }
-
-/* .about-item-container-landscape{
-    height: 35vh;
-} */
 
 .about-item-container-flex-portrait{
     margin: 1rem 3rem;
@@ -197,7 +198,8 @@ which are than on top of each other */
 }
 
 .about-text-container{
-    white-space: pre-line;
+    line-height: 1.1rem;
+    white-space: pre-wrap;
 }
 
 .about-text-container-flex{

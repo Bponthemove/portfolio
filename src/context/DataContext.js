@@ -89,8 +89,7 @@ export const DataProvider = ({children}) => {
       if (performance.getEntriesByType('navigation')[0].type === 'reload') {
         navigate('/#intro')
         setSectionActive('intro')
-        location.hash = '#intro'
-        introRef.current.scrollIntoView()         
+        location.hash = '#intro'      
       }
     }, [])
 

@@ -1,6 +1,6 @@
 .nav-img{
     position: absolute;
-    top: 0.6rem;
+    top: 0;
     left: 1rem;
     z-index: 999;
     width: 7.5rem;
@@ -34,7 +34,7 @@
     color: #fdfffc;
     width: 35%;
     transform: rotate(-4.5deg);
-    transform-origin: 30% 40%;
+    transform-origin: 25% 40%;
 }
 
 .nav-links-pc{
