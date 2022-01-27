@@ -55,6 +55,15 @@
   overflow-y: hidden;
 }
 
+.no-posts-p{
+  width: 60vw;
+  margin: 0.8rem 0.8rem;
+  font-family: 'Satisfy', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .link{
   margin: 0.8rem 0.8rem 1.25rem 0.8rem;
   padding: 1rem;

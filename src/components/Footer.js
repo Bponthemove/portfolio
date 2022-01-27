@@ -2,12 +2,15 @@ import React, { useContext } from 'react'
 import { IconContext } from 'react-icons/lib'
 import { FaLinkedin, FaGithub, } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
+import Userfront from "@userfront/react";
 import '../css/footer.css'
 import { Link } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 
 const Footer = () => {
-    const { deviceClass, loggedIn, LogoutButton } = useContext(DataContext)
+    const { deviceClass, loggedIn, toolId } = useContext(DataContext)
+
+    const LogoutButton = Userfront.build({ toolId: toolId })
     
     return (
         <footer>
@@ -31,7 +34,7 @@ const Footer = () => {
                     </Link>
                 </IconContext.Provider>
             </div>
-            { (loggedIn && LogoutButton !== undefined) && <LogoutButton className='logOutBtn'/> }
+            { loggedIn && toolId !== null && <LogoutButton className='logOutBtn'/> }
         </footer>
     )
 }

@@ -20,7 +20,7 @@ export const useAxiosFetch = (dataUrl, submittedId, deletedId, updatedId, curren
     }
 
     useEffect(() => {
-        if (currentUrl === '/blog') fetchData(dataUrl)
+        fetchData(dataUrl)
     }, [submittedId, deletedId, updatedId, currentUrl])
 
     return { posts, fetchError, isLoading }

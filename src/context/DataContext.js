@@ -16,7 +16,8 @@ export const DataProvider = ({children}) => {
     const server = 'https://guarded-bastion-37396.herokuapp.com'
     const dataUrl = `${server}/blog`
     
-    const [LogoutButton, setLogoutButton] = useState(null)
+    const [problem, setProblem] = useState(null)
+    const [toolId, setToolId] = useState(null)
     const [token, setToken] = useState(null)
     const [cloudName, setCloudName] = useState('dnytpilwo')
     const [search, setSearch] = useState('')
@@ -39,6 +40,7 @@ export const DataProvider = ({children}) => {
     const skillsRef = useRef(null)
     const codeRef = useRef(null)
     const blogRef = useRef(null)
+    const navRef = useRef(null)
     const navigate = useNavigate()
     const location = useLocation()
     const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
@@ -57,15 +59,18 @@ export const DataProvider = ({children}) => {
     useEffect(() => {
       auth()
       setToken(Userfront.accessToken())
-    }, [sectionActive])
-
-        //setting top for home on first load so that all references are right for scrolling
-    useEffect(() => {
-      if (location.pathname.slice(0, 5) !== '/blog') {
-        const { top } = introRef.current.getBoundingClientRect()
-        setTopOnInit(top)
-      }      
     }, [])
+
+        //setting offset for home on first load so that all references are right for scrolling
+    useEffect(() => {
+      if (!blogRef.current) {
+        const { bottom } = navRef.current.getBoundingClientRect()
+        setTopOnInit(bottom)
+        console.log(bottom)   
+      } else {
+        setTopOnInit(null)
+      }
+    }, [blogRef, orientation])
 
         //check if anybody is logged in
     useEffect(() => {
@@ -99,7 +104,12 @@ export const DataProvider = ({children}) => {
         const results = posts.filter(post => {
           return  post.Text.toLowerCase().includes(search.toLowerCase()) || post.Title.toLowerCase().includes(search.toLowerCase()) 
         })
-        setFilteredPosts(results)
+        console.log(results)
+        if (results.length !== 0) {
+          setFilteredPosts(results)
+        } else {
+          setFilteredPosts('error')
+        }
       } else{
         if (filteredPosts.length !== 0) setFilteredPosts([])
       } 
@@ -109,12 +119,15 @@ export const DataProvider = ({children}) => {
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
-        console.log(res.data);
-        Userfront.init(res.data[0].Userfront_tenantId)
-        setLogoutButton(Userfront.build({ toolId: res.data[0].Userfront_toolId }))
-        setCloudName(res.data[1].Cloudinary_cloudName)
+        if (res.statusText === 'OK') {
+          console.log(res)
+          Userfront.init(res.data[0].Userfront_tenantId)
+          setToolId(res.data[0].Userfront_toolId)
+          setCloudName(res.data[1].Cloudinary_cloudName)
+        }
       } catch(err) {
-        navigate('/NotFound')
+        console.error(err)
+        setProblem("can't retrieve environment variables")
       } 
     }
 
@@ -160,13 +173,12 @@ export const DataProvider = ({children}) => {
               Authorization: `Bearer ${Userfront.accessToken()}`,
               AccessType: 'admin'
             }
+            
           })
-          if (response.status === 200 & response.data !== '') {
+          console.log(response)
+          if (response.status === 200) {
             setSubmittedId(response.data._id)
             navigate(`/blog/post/${response.data._id}`)
-          } else {
-            alert('only the administrator can delete a blog')
-            return
           }
         } catch(err) {
           console.log(`Error: ${err.message}`)
@@ -271,16 +283,14 @@ export const DataProvider = ({children}) => {
               AccessType: 'admin'
             }
           })
-          if (response.status === 200 & response.data !== '') {
+          console.log(response)
+          if (response.status === 200) {
             setDeletedId(response.data._id)
             navigate('/blog')
             return
-          } else {
-            alert('only the administrator can delete a blog')
-            return
           }
         } catch (err) {
-          console.log(err)
+          navigate('/NotFound', )
         }
       } else {
         navigate('/login')
@@ -292,11 +302,11 @@ export const DataProvider = ({children}) => {
         <DataContext.Provider value={{
             posts, filteredPosts, isLoading, deleteHandle, fetchError, 
             submitHandle, setNewPostText, newPostText, useInterval,
-            newPostTitle, setNewPostTitle, search, blogRef,
+            newPostTitle, setNewPostTitle, search, blogRef, problem,
             setSearch, thumbsHandle, orientation, touch, deviceClass,
             commentsHandle, comment, setComment, submitCommentHandle,
             inputRef, commentClicked, setCommentClicked, loggedIn, 
-            setLoggedIn, LogoutButton, navigate, click, clickHandler,
+            setLoggedIn, toolId, navigate, click, clickHandler, navRef,
             location, scrollHandler, sections, sectionActive, cloudName
         }}>
             {children}

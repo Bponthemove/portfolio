@@ -7,46 +7,45 @@ import '../css/nav.css'
 import { Image } from 'cloudinary-react'
 
 const Nav = () => {
-    const { orientation, deviceClass, click, clickHandler, cloudName} = useContext(DataContext)
+    const { orientation, deviceClass, click, clickHandler, cloudName, navRef} = useContext(DataContext)
 
     return (
         <>
-{/* image absolute over the nav bar */}
-        { cloudName && deviceClass !== 'mobile' &&
-            <Image  cloudName={ cloudName }
-                    publicId="Portfolio/images/IMG_4104_rmar02.jpg" 
-                    alt='Me'
-                    quality='auto'
-                    className="nav-img"
-            /> 
-        }
-        { !cloudName && deviceClass !== 'mobile' &&
-            <div className='nav-img nav-img-loading'>...</div>
-        }
-        <nav className={ deviceClass !== 'mobile' ? 'nav-pc' : 'nav-mobile' }>
-            { (deviceClass === 'mobile' || orientation === 'landscape') &&
-            <div className="nav-personal-container">
-                Bram peter van Zalk
-            </div> }
-            <IconContext.Provider value={{  color: '#fff2cf', 
-                                            size: '3rem', 
-                                            className: deviceClass === 'mobile' ? 'menu-icon' : 'hidden' 
-                                            }}
-            >
-                <div onClick={ clickHandler } className="hamburger-container">
-                    { click ? <FaTimes color='#fdfffc' /> : <FaBars color='#fdfffc' /> }
-                </div>
-            </IconContext.Provider>
-            <ul className={ deviceClass !== 'mobile' ? 'nav-links-pc' : click ? 'nav-links-mobile-open' : 'nav-links-mobile-closed' }>
-                { ['/', '#intro', '#about', '#skills', '#code', '/blog'].map((link, index) => 
-                    <NavLinks 
-                        clickHandler={clickHandler}
-                        link={link} 
-                        key={index} 
-                    />
-                ) }
-            </ul>
-        </nav>
+            { cloudName && deviceClass !== 'mobile' &&
+                <Image  cloudName={ cloudName }
+                        publicId="Portfolio/images/IMG_4104_rmar02.jpg" 
+                        alt='Me'
+                        quality='auto'
+                        className="nav-img"
+                /> 
+            }
+            { !cloudName && deviceClass !== 'mobile' &&
+                <div className='nav-img nav-img-loading'>...</div>
+            }
+            <nav ref={ navRef } className={ deviceClass !== 'mobile' ? 'nav-pc' : 'nav-mobile' }>
+                { (deviceClass === 'mobile' || orientation === 'landscape') &&
+                <div className="nav-personal-container">
+                    Bram peter van Zalk
+                </div> }
+                <IconContext.Provider value={{  color: '#fff2cf', 
+                                                size: '3rem', 
+                                                className: deviceClass === 'mobile' ? 'menu-icon' : 'hidden' 
+                                                }}
+                >
+                    <div onClick={ clickHandler } className="hamburger-container">
+                        { click ? <FaTimes color='#fdfffc' /> : <FaBars color='#fdfffc' /> }
+                    </div>
+                </IconContext.Provider>
+                <ul className={ deviceClass !== 'mobile' ? 'nav-links-pc' : click ? 'nav-links-mobile-open' : 'nav-links-mobile-closed' }>
+                    { ['/', '#intro', '#about', '#skills', '#code', '/blog'].map((link, index) => 
+                        <NavLinks 
+                            clickHandler={clickHandler}
+                            link={link} 
+                            key={index} 
+                        />
+                    ) }
+                </ul>
+            </nav>
         </>
     )
 }
