@@ -9,7 +9,7 @@
 .header-text-container{
   display: flex;
   width: 50vw;
-  transform: translateX(25%);
+  transform: translateX(35%);
   padding: 0.7rem 0;
 }
 
@@ -31,7 +31,7 @@
   border-right: .22rem solid #586f7c;
   letter-spacing: .25rem; 
   animation: 
-    typing 4.5s steps(60, end),
+    typing 5.5s steps(60, end),
     blink-caret .95s step-end infinite;
 }
 

@@ -24,7 +24,7 @@ const Nav = () => {
             }
             <nav ref={ navRef } className={ deviceClass !== 'mobile' ? 'nav-pc' : 'nav-mobile' }>
                 { (deviceClass === 'mobile' || orientation === 'landscape') &&
-                <div className="nav-personal-container">
+                <div className={ deviceClass === 'mobile' ? 'nav-personal-container nav-personal-container-mob' : 'nav-personal-container' }>
                     Bram peter van Zalk
                 </div> }
                 <IconContext.Provider value={{  color: '#fff2cf', 

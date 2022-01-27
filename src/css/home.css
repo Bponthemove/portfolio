@@ -45,10 +45,6 @@
     padding: 1rem 3rem;
 }
 
-.section-h3-mob{
-    display: none;
-}
-
 .section-p{
     padding: 1rem 3rem;
 }
@@ -191,6 +187,12 @@
     margin: 1rem 3rem;
 }
 
+.about-item-container-mob{
+    position: relative;
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
 /* display grid and than grid area 1/1 so that you end up with 1 column and 1 row for two child divs, 
 which are than on top of each other */
 .about-img-container, .about-text-container{
@@ -236,6 +238,7 @@ which are than on top of each other */
 .image1{
     border-radius: 1.2rem;
     opacity: 0.1;
+    margin-top: 6rem;
     width: 25%;
     height: auto;
 }
@@ -248,6 +251,7 @@ which are than on top of each other */
 }
 
 .image1-laptop{
+    margin: 0;
     width: 20%;
 }
 
@@ -295,6 +299,7 @@ which are than on top of each other */
 .skills-list-container{
     display: flex;
     justify-content: space-evenly;
+    column-gap: 4rem;
     padding: 1rem 3rem;
 }
 
