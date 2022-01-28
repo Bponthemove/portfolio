@@ -32,9 +32,9 @@
     font-family: 'Satisfy', cursive;
     font-size: 1.2rem;
     color: #fdfffc;
-    /* width: 5%; */
+    width: 100%;
     transform: rotate(-4.2deg);
-    transform-origin: 20% 0;
+    transform-origin: 12% 0;
 }
 
 .nav-personal-container-mob{
