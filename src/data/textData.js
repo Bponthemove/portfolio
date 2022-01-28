@@ -49,7 +49,7 @@ const lifeSkills = [
     "fluent in English, Dutch and German.",
     "Reasonable understanding of French",
     "Great people skills",
-    "Good at seeing the bigger picture",
+    "Able to see the big picture",
     "Self confident",
     "Very keen on learning new things",
     "Problem solver"

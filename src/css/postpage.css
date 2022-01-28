@@ -9,6 +9,13 @@
     max-width: 900px;
 }
 
+.postpage-post-mob{
+    max-height: 84.5vh;
+    margin: 0.5rem;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
 .postpage-post-centered{
     margin: 1rem auto;
 }
@@ -31,12 +38,22 @@
     white-space: nowrap;
 }
 
+.postpage-post-header-mob{
+    padding: 0.5rem;
+    white-space: pre-wrap;
+}
+
 .postpage-post-header > h1{
     width: 70%;
     padding: 0.2rem 0;
     color: #fdfffc;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.postpage-post-header-mob > h1 {
+    overflow: visible;
+    font-size: 1.1rem;
 }
 
 .postpage-post-header > a{

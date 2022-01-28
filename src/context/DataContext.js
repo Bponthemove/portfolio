@@ -133,6 +133,7 @@ export const DataProvider = ({children}) => {
 
         //keeping track of scroll position in sections on home page
     const scrollHandler = () => {
+      if (click) setClick(!click)
       let offset = 0
       orientation === 'portrait' ? offset = topOnInit + 2 : offset = topOnInit + 4
       const { height, top } = introRef.current.getBoundingClientRect()

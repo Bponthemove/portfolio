@@ -75,7 +75,7 @@
     position: fixed;
     background-color: #586f7c;
     right: 0px;
-    top: 3.22rem;
+    top: 3.24rem;
     width: 30%;
     border-radius: 0px 0px 0px 10px;
     list-style: none;
@@ -85,6 +85,10 @@
     transition: all 0.6s ease;  
     cursor: pointer;  
     z-index: 999;
+}
+
+.nav-links-mobile-open > li{
+    width: 85%;
 }
 
 .nav-links-mobile-open > li > a{

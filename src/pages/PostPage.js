@@ -33,12 +33,12 @@ const PostPage = () => {
             {!post && <p>...is loading...</p>}
             {post && 
                 <main id={ click ? 'mainNavOpen' : 'mainNavClosed' }>
-                    <div className={    deviceClass !== 'pc' && orientation === 'landscape' ? 'postpage-post postpage-post-max-height postpage-post-centered' 
-                    
+                    <div className={    deviceClass === 'laptop/tablet' && orientation === 'landscape' ? 'postpage-post postpage-post-max-height postpage-post-centered' 
+                                        : deviceClass === 'mobile' && orientation === 'portrait' ? 'postpage-post postpage-post-mob' 
                                         : orientation === 'landscape' ? 'postpage-post postpage-post-centered' : 'postpage-post' 
                         }
                     >
-                        <div className='postpage-post-header'>
+                        <div className={ deviceClass !== 'mobile' ? 'postpage-post-header' : 'postpage-post-header postpage-post-header-mob' }>
                             <h1>{ post.Title }</h1>
                             <Link to='/blog'><ImCross size='1.6rem'/></Link>
                         </div>

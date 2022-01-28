@@ -27,14 +27,14 @@ const SectionHome = ({ section, index }) => {
                         }
                     </h1>
                     { deviceClass !== 'mobile' || (deviceClass === 'mobile' && link === 'intro') &&
-                    <h3 className= 'section-h3' >
+                    <h3 className= {deviceClass !== 'mobile' ? 'section-h3': 'section-h3 section-h3-mob' }>
                         {   link === 'intro' ? text.intro.h3
                             : link === 'about' ? text.about.h3
                             : link === 'skills' ? text.skills.h3
                             : text.code.h3    
                         }
                     </h3> }
-                    <p className='section-p'>
+                    <p className={ deviceClass !== 'mobile' ? 'section-p' : 'section-p-mob' }>
                         {   link === 'intro' ? text.intro.p
                             : link === 'about' ? text.about.p
                             : link === 'skills' ? text.skills.p
@@ -48,7 +48,7 @@ const SectionHome = ({ section, index }) => {
                         <AboutItem pastTrades={pastTrades}/>
                     }
                     {link === 'skills' && 
-                        <div className='skills-list-container'>
+                        <div className={ deviceClass !== 'mobile' ? 'skills-list-container' : 'skills-list-container skills-list-container-mob' }>
                             <SkillsDevelopment/>
                             <SkillsLife/>
                         </div>    
