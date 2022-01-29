@@ -57,7 +57,7 @@ export const DataProvider = ({children}) => {
 //********** useEffects *************//
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
-      if (!cloudName && !toolId) {
+      if (!toolId) {
         auth()
         setToken(Userfront.accessToken())
       }
