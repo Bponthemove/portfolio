@@ -116,7 +116,7 @@ export const DataProvider = ({children}) => {
         if (res.status === 200) {
           Userfront.init(res.data[0].Userfront_tenantId)
           setToolId(res.data[0].Userfront_toolId)
-          setCloudName(res.data[1].Cloudinary_cloudName)
+          // setCloudName(res.data[1].Cloudinary_cloudName)
         }
       } catch(err) {
         console.error(err)
