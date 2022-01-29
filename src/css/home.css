@@ -198,6 +198,7 @@
 }
 
 .about-item-container-mob{
+    margin: 1rem;
     position: relative;
     max-height: 40vh;
     overflow-y: scroll;
@@ -220,11 +221,12 @@ which are than on top of each other */
 
 .about-text-container > h5{
     padding-bottom: 1rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .about-text-container > p{
-    font-size: 0.8rem;
+    line-height: 1.25rem;
+    font-size: 0.9rem;
 }
 
 .about-img-container{
@@ -247,7 +249,7 @@ which are than on top of each other */
 
 .image1{
     border-radius: 1.2rem;
-    opacity: 0.1;
+    opacity: 0.05;
     margin-top: 6rem;
     width: 25%;
     height: auto;
@@ -255,7 +257,7 @@ which are than on top of each other */
 
 .image2{
     border-radius: 1.2rem;
-    opacity: 0.1;
+    opacity: 0.05;
     width: 34%;
     height: auto;
 }
@@ -297,8 +299,8 @@ which are than on top of each other */
 @media (hover: hover) {
     .about-img-container > img:hover {
         opacity: 1;
-        transition: opacity 0.2s ease-in;
-        transition: box-shadow 0.2s ease-in;
+        transition: opacity 0.12s ease-in-out;
+        transition: box-shadow 0.12s ease-in-out;
         z-index: 999;
         box-shadow: #586f7c 0px 2px 8px 0px;
     }

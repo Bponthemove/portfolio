@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { headerText } from "../data/textData";
 import '../css/header.css'
@@ -7,14 +7,18 @@ const Header = () => {
     const { deviceClass, location, sectionActive, useInterval } = useContext(DataContext)
     const [qouteText1, setQouteText1] = useState(headerText[0].text1)
     const [qouteText2, setQouteText2] = useState(headerText[0].text2)
+    const [delay, setDelay] = useState(null)
+
+    //to unmount when header is not rendered in mobile
+    useEffect(() => {
+        deviceClass === 'mobile' ? setDelay(null) : setDelay(3500)
+    }, [deviceClass])
 
     useInterval(() => {
-        if (deviceClass !== 'mobile') {
-            const random = Math.floor(Math.random() * 11)
-            setQouteText1(headerText[random].text1)
-            setQouteText2(headerText[random].text2)
-        }
-    }, 3500)
+        const random = Math.floor(Math.random() * 11)
+        setQouteText1(headerText[random].text1)
+        setQouteText2(headerText[random].text2)
+    }, delay)
 
     return (
         <>

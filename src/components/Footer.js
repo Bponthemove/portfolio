@@ -36,7 +36,7 @@ const Footer = () => {
                     </Link>
                 </IconContext.Provider>
             </div>
-            { loggedIn && toolId !== null && <LogoutButton className='logOutBtn'/> }
+            { loggedIn && toolId !== null && <LogoutButton/> }
         </footer>
     )
 }

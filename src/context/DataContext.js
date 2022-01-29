@@ -19,7 +19,7 @@ export const DataProvider = ({children}) => {
     const [problem, setProblem] = useState(null)
     const [toolId, setToolId] = useState(null)
     const [token, setToken] = useState(null)
-    const [cloudName, setCloudName] = useState('dnytpilwo')
+    const [cloudName, setCloudName] = useState(null)
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [comment, setComment] = useState('')
@@ -67,8 +67,7 @@ export const DataProvider = ({children}) => {
     useEffect(() => {
       if (!blogRef.current) {
         const { bottom } = navRef.current.getBoundingClientRect()
-        setTopOnInit(bottom)
-        console.log(bottom)   
+        setTopOnInit(bottom)  
       } else {
         setTopOnInit(null)
       }
@@ -99,7 +98,6 @@ export const DataProvider = ({children}) => {
         const results = posts.filter(post => {
           return  post.Text.toLowerCase().includes(search.toLowerCase()) || post.Title.toLowerCase().includes(search.toLowerCase()) 
         })
-        console.log(results)
         if (results.length !== 0) {
           setFilteredPosts(results)
         } else {
@@ -115,7 +113,6 @@ export const DataProvider = ({children}) => {
       try {
         const res = await axios.get(`${server}/auth`)
         if (res.statusText === 'OK') {
-          console.log(res)
           Userfront.init(res.data[0].Userfront_tenantId)
           setToolId(res.data[0].Userfront_toolId)
           setCloudName(res.data[1].Cloudinary_cloudName)
@@ -171,7 +168,6 @@ export const DataProvider = ({children}) => {
             }
             
           })
-          console.log(response)
           if (response.status === 200) {
             setSubmittedId(response.data._id)
             navigate(`/blog/post/${response.data._id}`)
@@ -193,8 +189,10 @@ export const DataProvider = ({children}) => {
         let newNumber
         let updatedPost
         const postToUpdate = posts.find(post => post._id === postId)
-        upOrDown === 'up' ? newNumber = postToUpdate.Likes + 1 : newNumber = postToUpdate.Dislikes + 1 
-        upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} : updatedPost = {...postToUpdate, Dislikes : newNumber}
+        upOrDown === 'up' ? newNumber = postToUpdate.Likes + 1 
+                            : newNumber = postToUpdate.Dislikes + 1 
+        upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} 
+                            : updatedPost = {...postToUpdate, Dislikes : newNumber}
         try {
           const response = await axios.put(`${server}/blog/updatepost/${updatedPost._id}`, updatedPost, {
             headers: {
@@ -204,15 +202,10 @@ export const DataProvider = ({children}) => {
               AccessFor: 'thumbs'
             }
           })
-          console.log(response)
-          if (response.status === 200 & response.data !== '') {
-            setupdatedId(response.data)
-          } else {
-            alert('Only one like/dislike per post please')
-            return
-          }
+          if (response.status === 200) setupdatedId(response.data)
         } catch (err) {
           console.log(err)
+          alert('Only one like/dislike per post please')
         }
       } else {
         navigate('/login')
@@ -249,7 +242,6 @@ export const DataProvider = ({children}) => {
         const newComment = {Comment: comment, TimeComment: nowFormatted}
         const updatedComments = [...Comments, newComment]
         const updatedPost = {...postToUpdate, Comments: updatedComments}
-        console.log(updatedPost)
         try {
           const response = await axios.put(`${server}/blog/updatepost/${postId}`, updatedPost, {
             headers: {
@@ -259,7 +251,7 @@ export const DataProvider = ({children}) => {
               AccessFor: 'comments'
             }
           })
-          setupdatedId(response.data)
+          if (response.status === 200) setupdatedId(response.data)
         } catch (err) {
           console.log(err)
         } finally {
