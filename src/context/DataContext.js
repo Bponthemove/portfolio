@@ -19,7 +19,7 @@ export const DataProvider = ({children}) => {
     const [problem, setProblem] = useState(null)
     const [toolId, setToolId] = useState(null)
     const [token, setToken] = useState(null)
-    const [cloudName, setCloudName] = useState(null)
+    const [cloudName, setCloudName] = useState('dnytpilwo')
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [comment, setComment] = useState('')
@@ -112,7 +112,8 @@ export const DataProvider = ({children}) => {
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
-        if (res.statusText === 'OK') {
+        console.log(res)
+        if (res.status === 200) {
           Userfront.init(res.data[0].Userfront_tenantId)
           setToolId(res.data[0].Userfront_toolId)
           setCloudName(res.data[1].Cloudinary_cloudName)
