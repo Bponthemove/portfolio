@@ -23,8 +23,8 @@ export const DataProvider = ({children}) => {
       postDetails: null,
       headers: null,
     })
-    const [userfrontTenantId, setUserfrontTenantId] = useState(null)
-    const [cloudName, setCloudName] = useState(null)
+    const [userfrontTenantId, setUserfrontTenantId] = useState("vbqdqvnq")
+    const [cloudName, setCloudName] = useState("dnytpilwo")
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [newPostText, setNewPostText] = useState('')
@@ -130,8 +130,8 @@ export const DataProvider = ({children}) => {
       try {
         const res = await axios.get(`${server}/auth`)
         if (res.status === 200) {
-          setUserfrontTenantId(res.data.Userfront_tenantId)
-          setCloudName(res.data.Cloudinary_cloudName)
+          // setUserfrontTenantId(res.data.Userfront_tenantId)
+          // setCloudName(res.data.Cloudinary_cloudName)
         }
       } catch(err) {
         console.error(err)

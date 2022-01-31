@@ -12,7 +12,7 @@ const Blog = () => {
     return (
         <>  
             { isLoading && <p style={{ width: '100%' , textAlign: 'center' }} >....is currently loading....</p> }
-            { axiosError && <p style={{ width: '100%', textAlign: 'center' }} >{ fetchError }</p> }
+            { axiosError && <p style={{ width: '100%', textAlign: 'center' }} >{ axiosError }</p> }
             { !isLoading && !axiosError && posts.length === 0 && <p>No posts to display</p>} 
             { !isLoading && !axiosError && posts.length !== 0 &&
                 <main   className={ deviceClass === 'mobile' ? 'main-blog main-blog-mobile' : 'main-blog' } 

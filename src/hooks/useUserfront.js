@@ -14,7 +14,6 @@ export const useUserfront = (userfrontTenantId) => {
     const [token, setToken] = useState(null)
 
     useEffect(() => {
-        console.log(token)
         if (userfrontTenantId) {
             Userfront.init(userfrontTenantId)
             setLogoutButton(Userfront.build({
