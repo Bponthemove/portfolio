@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
-import Userfront from "@userfront/react"
+import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { DataContext } from '../context/DataContext'
+import Userfront from '@userfront/react'
 
 const Dashboard = () => {
+    const { token } = useContext(DataContext)
     const [access, setAccess] = useState(false)
     const [userData, setUserData] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (!Userfront.accessToken()) {
+        if (!token) {
             navigate('/login')
         } else {
             setAccess(true)

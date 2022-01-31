@@ -7,15 +7,14 @@ import { Link } from 'react-router-dom'
 import { blog } from '../data/textData'
 
 const Blog = () => {
-    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, fetchError, blogRef, cloudName, problem } = useContext(DataContext)
-
+    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, axiosError, blogRef, cloudName } = useContext(DataContext)
+    
     return (
         <>  
             { isLoading && <p style={{ width: '100%' , textAlign: 'center' }} >....is currently loading....</p> }
-            { fetchError && <p style={{ width: '100%', textAlign: 'center' }} >{ fetchError }</p> }
-            { problem && <p style={{ width: '100%', textAlign: 'center' }} >{ problem }</p> }  
-            { !isLoading && !problem && !fetchError && posts.length === 0 && <p>No posts to display</p>} 
-            { !isLoading && !problem && !fetchError && posts.length !== 0 &&
+            { axiosError && <p style={{ width: '100%', textAlign: 'center' }} >{ fetchError }</p> }
+            { !isLoading && !axiosError && posts.length === 0 && <p>No posts to display</p>} 
+            { !isLoading && !axiosError && posts.length !== 0 &&
                 <main   className={ deviceClass === 'mobile' ? 'main-blog main-blog-mobile' : 'main-blog' } 
                         id={ click ? 'mainNavOpen' : 'mainNavClosed' }
                         ref={blogRef}

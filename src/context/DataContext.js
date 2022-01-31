@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useAxiosFetch } from "../hooks/useAxiosFetch" 
 import { useCurrentUrl } from '../hooks/useCurrentUrl'
 import { useScreenDetails } from '../hooks/useScreenDetails'
 import { useInterval } from '../hooks/useInterval'
-import Userfront from "@userfront/react";
+import { useAxios } from '../hooks/useAxios'
+import { useUserfront } from '../hooks/useUserfront'
 import date from 'date-and-time'
 import axios from 'axios'
 
@@ -16,20 +16,21 @@ export const DataProvider = ({children}) => {
     const server = 'https://guarded-bastion-37396.herokuapp.com'
     const dataUrl = `${server}/blog`
     
-    const [problem, setProblem] = useState(null)
-    const [toolId, setToolId] = useState(null)
-    const [token, setToken] = useState(null)
-    const [cloudName, setCloudName] = useState('dnytpilwo')
+    const [posts, setPosts] = useState([])
+    const [details, setDetails] = useState({
+      method: null,
+      url: null,
+      postDetails: null,
+      headers: null,
+    })
+    const [userfrontTenantId, setUserfrontTenantId] = useState(null)
+    const [cloudName, setCloudName] = useState(null)
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
-    const [comment, setComment] = useState('')
     const [newPostText, setNewPostText] = useState('')
     const [newPostTitle, setNewPostTitle] = useState('')
-    const [submittedId, setSubmittedId] = useState(null)
     const [deletedId, setDeletedId] = useState(null)
-    const [updatedId, setupdatedId] = useState(null)
     const [commentClicked, setCommentClicked] = useState(false)
-    const [loggedIn, setLoggedIn] = useState(false)
     const [click, setClick] = useState(false)
     const [topOnInit, setTopOnInit] = useState(null)
     const [sectionActive, setSectionActive] = useState('intro')
@@ -43,8 +44,9 @@ export const DataProvider = ({children}) => {
     const navRef = useRef(null)
     const navigate = useNavigate()
     const location = useLocation()
+    const { LogoutButton, SignupForm, LoginForm, token } = useUserfront(userfrontTenantId, location)
+    const { data, axiosError, isLoading, submittedId, updatedId, comment, setComment } = useAxios(details, setDeletedId, setNewPostText, setNewPostTitle)
     const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
-    const { isLoading, fetchError, posts } = useAxiosFetch(dataUrl, submittedId, deletedId, updatedId, currentUrl)
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
 
     const sections = [
@@ -55,12 +57,32 @@ export const DataProvider = ({children}) => {
     ]
 
 //********** useEffects *************//
+        //error
+    useEffect(() => {
+      if (axiosError) {
+        alert(`${axiosError.response.data}`)
+        navigate('/blog')
+      } 
+    }, [axiosError])
+
+        //updating posts after each back end manipulation
+    useEffect(() => {
+      if (location.pathname !== '/') 
+        setDetails({
+          method: 'get',
+          url: dataUrl,
+          postDetails: null,
+          headers: null,
+        })
+    }, [dataUrl, submittedId, deletedId, updatedId, currentUrl])
+
+    useEffect(() => {
+      if (data) setPosts(data)
+    }, [data])
+
         //getting env details for cloudinary and userfront and than connecting to userfront
     useEffect(() => {
-      if (!toolId) {
-        auth()
-        setToken(Userfront.accessToken())
-      }
+      auth()
     }, [])
 
         //setting offset for home on first load so that all references are right for scrolling
@@ -72,11 +94,6 @@ export const DataProvider = ({children}) => {
         setTopOnInit(null)
       }
     }, [blogRef, orientation])
-
-        //check if anybody is logged in
-    useEffect(() => {
-      token === null || token === undefined || Object.entries(token).length === 0 ? setLoggedIn(false) : setLoggedIn(true)  
-    }, [token])
 
       //set section back to intro when clicking blog
     useEffect(() => {
@@ -112,15 +129,12 @@ export const DataProvider = ({children}) => {
     const auth = async() => {
       try {
         const res = await axios.get(`${server}/auth`)
-        console.log(res)
         if (res.status === 200) {
-          Userfront.init(res.data[0].Userfront_tenantId)
-          setToolId(res.data[0].Userfront_toolId)
-          // setCloudName(res.data[1].Cloudinary_cloudName)
+          setUserfrontTenantId(res.data.Userfront_tenantId)
+          setCloudName(res.data.Cloudinary_cloudName)
         }
       } catch(err) {
         console.error(err)
-        setProblem("can't retrieve environment variables")
       } 
     }
 
@@ -144,7 +158,7 @@ export const DataProvider = ({children}) => {
   //CREATE -----****submit new post handler****------ 
     const submitHandle = async (e) => {
       e.preventDefault()
-      if (!loggedIn) {
+      if (!token) {
         navigate('/login')
         alert('Only the administrator can submit a blog')
         return
@@ -160,25 +174,16 @@ export const DataProvider = ({children}) => {
         const now = new Date()
         const nowFormatted = date.format(now, 'DD/MM/YYYY HH:mm')
         const newPost = {Title: newPostTitle, Text: newPostText, Time: nowFormatted}
-        try {
-          const response = await axios.post(`${server}/blog/newpost`, newPost, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Userfront.accessToken()}`,
-              AccessType: 'admin'
-            }
-            
-          })
-          if (response.status === 200) {
-            setSubmittedId(response.data._id)
-            navigate(`/blog/post/${response.data._id}`)
-          }
-        } catch(err) {
-          console.log(`Error: ${err.message}`)
-        } finally {
-          setNewPostText('')
-          setNewPostTitle('')
-        }
+        setDetails({
+          method: 'post',
+          url: `${server}/blog/newpost`,
+          postDetails: newPost,
+          headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                  AccessType: 'admin'
+                }
+        })
       }
     }
 
@@ -186,7 +191,7 @@ export const DataProvider = ({children}) => {
 
   //UPDATE -----****thumbs and add comment handlers****------ 
     const thumbsHandle = async (postId, upOrDown) => {
-      if (loggedIn) {
+      if (token) {
         let newNumber
         let updatedPost
         const postToUpdate = posts.find(post => post._id === postId)
@@ -194,28 +199,25 @@ export const DataProvider = ({children}) => {
                             : newNumber = postToUpdate.Dislikes + 1 
         upOrDown === 'up' ? updatedPost = {...postToUpdate, Likes : newNumber} 
                             : updatedPost = {...postToUpdate, Dislikes : newNumber}
-        try {
-          const response = await axios.put(`${server}/blog/updatepost/${updatedPost._id}`, updatedPost, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Userfront.accessToken()}`,
-              AccessType: 'member',
-              AccessFor: 'thumbs'
-            }
-          })
-          if (response.status === 200) setupdatedId(response.data)
-        } catch (err) {
-          console.log(err)
-          alert('Only one like/dislike per post please')
-        }
+        setDetails({
+          method: 'put',
+          url: `${server}/blog/updatepost/${updatedPost._id}`,
+          postDetails: updatedPost,
+          headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                  AccessType: 'member',
+                  AccessFor: 'thumbs'
+                }
+        })
       } else {
         navigate('/login')
         alert('please log in to like or dislike')
       }
     }
-      //handler to take you from '/blog' to post itself and places focus on input to add comment
+      //handler to take you from '/blog' to postpage itself and places focus on input to add comment
     const commentsHandle = postId => {
-      if (loggedIn) {
+      if (token) {
         setCommentClicked(true)
         navigate(`/blog/post/${postId}`)
       } else {
@@ -226,7 +228,7 @@ export const DataProvider = ({children}) => {
 
     const submitCommentHandle = async (event, postId) => {
       event.preventDefault()
-      if (!loggedIn) {
+      if (!token) {
         navigate('/login')
         alert('please log in to comment')
         return
@@ -235,7 +237,6 @@ export const DataProvider = ({children}) => {
         alert('please provide a comment')
         return
       } else {
-        //check token auth first
         const postToUpdate = posts.find(post => post._id === postId)
         const { Comments } = postToUpdate
         const now = new Date()
@@ -243,44 +244,33 @@ export const DataProvider = ({children}) => {
         const newComment = {Comment: comment, TimeComment: nowFormatted}
         const updatedComments = [...Comments, newComment]
         const updatedPost = {...postToUpdate, Comments: updatedComments}
-        try {
-          const response = await axios.put(`${server}/blog/updatepost/${postId}`, updatedPost, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Userfront.accessToken()}`,
-              AccessType: 'admin',
-              AccessFor: 'comments'
-            }
-          })
-          if (response.status === 200) setupdatedId(response.data)
-        } catch (err) {
-          console.log(err)
-        } finally {
-          setComment('')
-        }
+        setDetails({
+          method: 'put',
+          url: `${server}/blog/updatepost/${postId}`,
+          postDetails: updatedPost,
+          headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                  AccessType: 'member',
+                  AccessFor: 'comments'
+                }
+        })
       }
     }
   
   //DELETE -----****delete handler****------ 
     const deleteHandle = async (postId) => {
-      if (loggedIn) {
-        try {
-          const response = await axios.delete(`${server}/blog/deletepost/${postId}`, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${Userfront.accessToken()}`,
-              AccessType: 'admin'
-            }
-          })
-          console.log(response)
-          if (response.status === 200) {
-            setDeletedId(response.data._id)
-            navigate('/blog')
-            return
-          }
-        } catch (err) {
-          navigate('/NotFound', )
-        }
+      if (token) {
+        setDetails({
+          method: 'delete',
+          url: `${server}/blog/deletepost/${postId}`,
+          postDetails: {data: null},
+          headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                  AccessType: 'admin'
+                }
+        })
       } else {
         navigate('/login')
         alert('please log in as an administrator to delete')
@@ -289,14 +279,15 @@ export const DataProvider = ({children}) => {
 
     return (
         <DataContext.Provider value={{
-            posts, filteredPosts, isLoading, deleteHandle, fetchError, 
+            posts, filteredPosts, isLoading, deleteHandle, axiosError, 
             submitHandle, setNewPostText, newPostText, useInterval,
-            newPostTitle, setNewPostTitle, search, blogRef, problem,
+            newPostTitle, setNewPostTitle, search, blogRef, token,
             setSearch, thumbsHandle, orientation, touch, deviceClass,
             commentsHandle, comment, setComment, submitCommentHandle,
-            inputRef, commentClicked, setCommentClicked, loggedIn, 
-            setLoggedIn, toolId, navigate, click, clickHandler, navRef,
-            location, scrollHandler, sections, sectionActive, cloudName
+            inputRef, commentClicked, setCommentClicked,  
+            navigate, click, clickHandler, navRef, location, 
+            scrollHandler, sections, sectionActive, cloudName,
+            LogoutButton, SignupForm, LoginForm
         }}>
             {children}
         </DataContext.Provider>

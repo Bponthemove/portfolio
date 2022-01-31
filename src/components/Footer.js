@@ -2,16 +2,14 @@ import React, { useContext } from 'react'
 import { IconContext } from 'react-icons/lib'
 import { FaLinkedin, FaGithub, } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
-import Userfront from "@userfront/react";
+// import Userfront from "@userfront/react";
 import '../css/footer.css'
 import { Link } from 'react-router-dom'
 import { DataContext } from '../context/DataContext'
 
 const Footer = () => {
-    const { deviceClass, loggedIn, toolId, touch } = useContext(DataContext)
+    const { deviceClass, touch, token, LogoutButton } = useContext(DataContext)
 
-    const LogoutButton = Userfront.build({ toolId: toolId })
-    
     return (
         <footer>
             <div className={    (deviceClass !== 'mobile' && touch) || deviceClass === 'pc'  ? 'copyright' 
@@ -36,7 +34,7 @@ const Footer = () => {
                     </Link>
                 </IconContext.Provider>
             </div>
-            { loggedIn && toolId !== null && <LogoutButton/> }
+            { token && <LogoutButton/> }
         </footer>
     )
 }

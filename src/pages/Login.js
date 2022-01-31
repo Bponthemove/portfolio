@@ -1,13 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import Userfront from "@userfront/react"
+import { DataContext } from '../context/DataContext'
 
 const Login = () => {
-    Userfront.init("vbqdqvnq")
-
-    const LoginForm = Userfront.build({
-    toolId: 'rodrlr'
-    })
+    const { LoginForm } = useContext(DataContext)
 
     return (
         <div className='login-form' id='main'>
