@@ -12,8 +12,8 @@ export const DataContext = createContext({})
 
 export const DataProvider = ({children}) => {
 
-    const server = ''
-    // const server = 'https://guarded-bastion-37396.herokuapp.com'
+    // const server = ''
+    const server = 'https://guarded-bastion-37396.herokuapp.com'
     const dataUrl = `${server}/blog`
     
     const [posts, setPosts] = useState([])
