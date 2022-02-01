@@ -179,8 +179,8 @@ export const DataProvider = ({children}) => {
           postDetails: newPost,
           headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                  AccessType: 'admin'
+                  "Authorization": `Bearer ${token}`,
+                  "AccessType": "admin"
                 }
         })
       }
@@ -204,9 +204,9 @@ export const DataProvider = ({children}) => {
           postDetails: updatedPost,
           headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                  AccessType: 'member',
-                  AccessFor: 'thumbs'
+                  "Authorization": `Bearer ${token}`,
+                  "AccessType": "member",
+                  "AccessFor": "thumbs"
                 }
         })
       } else {
@@ -249,9 +249,9 @@ export const DataProvider = ({children}) => {
           postDetails: updatedPost,
           headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                  AccessType: 'member',
-                  AccessFor: 'comments'
+                  "Authorization": `Bearer ${token}`,
+                  "AccessType": "member",
+                  "AccessFor": "comments"
                 }
         })
       }
@@ -266,8 +266,8 @@ export const DataProvider = ({children}) => {
           postDetails: {data: null},
           headers: {
                   "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                  AccessType: 'admin'
+                  "Authorization": `Bearer ${token}`,
+                  "AccessType": "admin"
                 }
         })
       } else {
