@@ -46,7 +46,7 @@ export const DataProvider = ({children}) => {
     const navigate = useNavigate()
     const location = useLocation()
     const { LogoutButton, SignupForm, LoginForm, token } = useUserfront(userfrontTenantId, location)
-    const { data, axiosError, isLoading, submittedId, comment, setComment } = useAxios(details, setDeletedId, setNewPostText, setNewPostTitle)
+    const { data, axiosError, isLoading, submittedId, updatedId, comment, setComment } = useAxios(details, setDeletedId, setNewPostText, setNewPostTitle)
     const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
 
@@ -60,7 +60,7 @@ export const DataProvider = ({children}) => {
 //********** useEffects *************//
         //error
     useEffect(() => {
-      if (axiosError) alert(`Server error: ${axiosError.response.data}`)
+      if (axiosError) alert(`${axiosError.response.data}`)
       if (envError) alert(`${envError}`)
     }, [axiosError, envError])
 
@@ -73,7 +73,7 @@ export const DataProvider = ({children}) => {
           postDetails: null,
           headers: null,
         })
-    }, [ submittedId, deletedId, currentUrl ])
+    }, [ submittedId, deletedId, updatedId, currentUrl ])
 
     useEffect(() => {
       if (data) setPosts(data)
