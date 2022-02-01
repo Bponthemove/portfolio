@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export const useAxios = (details, setDeletedId, setNewPostText, setNewPostTitle) => {
     const [data, setdata] = useState(null)
     const [axiosError, setAxiosError] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const [submittedId, setSubmittedId] = useState(null)
     const [updatedId, setUpdatedId] = useState(null)
     const [comment, setComment] = useState('')
@@ -14,7 +14,7 @@ export const useAxios = (details, setDeletedId, setNewPostText, setNewPostTitle)
 
 //save latest axios method to remember and than request server data
     useEffect(() => {
-        if (details.method !== 'get') previousMethod.current = details.method   
+        if (details.method !== 'get') previousMethod.current = details.method  
         if (details.method) request(details)
     }, [details])
 
@@ -29,7 +29,7 @@ export const useAxios = (details, setDeletedId, setNewPostText, setNewPostTitle)
         .then(res => {
 //if response is ok than see which method and act accordingly. And after updating state, request new post list
             if (res.status === 200) {
-                if (method === 'get') {
+                if (method === 'get' && !axiosError) {
                     setdata(res.data)
                     if (previousMethod.current === 'post') {
                         navigate(`/blog/post/${submittedId}`)
@@ -44,6 +44,8 @@ export const useAxios = (details, setDeletedId, setNewPostText, setNewPostTitle)
                         previousMethod.current = null
                         return
                     }
+                    setAxiosError(null)
+                    previousMethod.current = null
                     return
                 }
                 if (method === 'post') {
@@ -61,13 +63,9 @@ export const useAxios = (details, setDeletedId, setNewPostText, setNewPostTitle)
                 }
             }
         }) 
-        .catch(err => {
-            console.log(err)
-            setAxiosError(err) 
-        }) 
+        .catch(err => setAxiosError(err)) 
         .finally(() => {
-            setIsLoading(false)
-        })
+            setIsLoading(false)})
     }
     return { data, axiosError, isLoading, submittedId, updatedId, comment, setComment }
 }

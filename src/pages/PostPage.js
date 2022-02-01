@@ -8,7 +8,7 @@ import { ImCross } from 'react-icons/im'
 import '../css/postpage.css'
 
 const PostPage = () => {
-    const { deviceClass, orientation, posts, comment, setComment, submitCommentHandle, inputRef, commentClicked, setCommentClicked, loggedIn, navigate, click } = useContext(DataContext)
+    const { deviceClass, orientation, posts, comment, setComment, submitCommentHandle, inputRef, commentClicked, setCommentClicked, token, navigate, click } = useContext(DataContext)
     const { id } = useParams()
     const [post, setPost] = useState(null)
     
@@ -69,7 +69,7 @@ const PostPage = () => {
                                     placeholder='add comment'
                                     ref={ inputRef }
                                     value={ comment }
-                                    onClick={ !loggedIn ? () => navigate('/login') : null }
+                                    onClick={ !token ? () => navigate('/login') : null }
                                     onChange={ e => setComment(e.target.value) }
                                 />
                                 <button type='submit' onClick={e => submitCommentHandle(e, post._id)}>Post</button>

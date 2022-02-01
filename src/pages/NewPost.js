@@ -1,5 +1,6 @@
 import { useContext, useRef, useEffect, useState } from 'react'
 import { DataContext } from '../context/DataContext'
+import { useInterval } from '../hooks/useInterval'
 import '../css/newPost.css'
 
 const NewPost = () => {
@@ -11,15 +12,9 @@ const NewPost = () => {
         titleRef.current.focus()
     }, [])
 
-    useEffect(() => {
-        function timer() {
-            setTimeout(() => {
-                setLoading(false)
-            }, 200);
-        }
-        timer()
-        return clearTimeout(timer)
-    }, [])
+    useInterval(() => {
+        setLoading(false)
+    }, [200])
 
     return (
         <main   className='main-new-post'

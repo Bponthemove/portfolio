@@ -23,8 +23,9 @@ export const DataProvider = ({children}) => {
       postDetails: null,
       headers: null,
     })
-    const [userfrontTenantId, setUserfrontTenantId] = useState("vbqdqvnq")
-    const [cloudName, setCloudName] = useState("dnytpilwo")
+    const [envError, setEnvError] = useState(null)
+    const [userfrontTenantId, setUserfrontTenantId] = useState(null)
+    const [cloudName, setCloudName] = useState(null)
     const [search, setSearch] = useState('')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [newPostText, setNewPostText] = useState('')
@@ -45,7 +46,7 @@ export const DataProvider = ({children}) => {
     const navigate = useNavigate()
     const location = useLocation()
     const { LogoutButton, SignupForm, LoginForm, token } = useUserfront(userfrontTenantId, location)
-    const { data, axiosError, isLoading, submittedId, updatedId, comment, setComment } = useAxios(details, setDeletedId, setNewPostText, setNewPostTitle)
+    const { data, axiosError, isLoading, submittedId, comment, setComment } = useAxios(details, setDeletedId, setNewPostText, setNewPostTitle)
     const { current : currentUrl } = useCurrentUrl(submittedId, deletedId, location)
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
 
@@ -59,22 +60,20 @@ export const DataProvider = ({children}) => {
 //********** useEffects *************//
         //error
     useEffect(() => {
-      if (axiosError) {
-        alert(`${axiosError.response.data}`)
-        navigate('/blog')
-      } 
-    }, [axiosError])
+      if (axiosError) alert(`Server error: ${axiosError.response.data}`)
+      if (envError) alert(`${envError}`)
+    }, [axiosError, envError])
 
         //updating posts after each back end manipulation
     useEffect(() => {
-      if (location.pathname !== '/') 
+      if (currentUrl === '/blog') 
         setDetails({
           method: 'get',
           url: dataUrl,
           postDetails: null,
           headers: null,
         })
-    }, [dataUrl, submittedId, deletedId, updatedId, currentUrl])
+    }, [ submittedId, deletedId, currentUrl ])
 
     useEffect(() => {
       if (data) setPosts(data)
@@ -130,11 +129,11 @@ export const DataProvider = ({children}) => {
       try {
         const res = await axios.get(`${server}/auth`)
         if (res.status === 200) {
-          // setUserfrontTenantId(res.data.Userfront_tenantId)
-          // setCloudName(res.data.Cloudinary_cloudName)
+          setUserfrontTenantId(res.data.Userfront_tenantId)
+          setCloudName(res.data.Cloudinary_cloudName)
         }
       } catch(err) {
-        console.error(err)
+        setEnvError(err)
       } 
     }
 
