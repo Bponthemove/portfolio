@@ -153,11 +153,11 @@ const code = [
         img: 'Portfolio/images/code/calculator_l4rcdb.png',
         appLink: "https://calculatorfcc.herokuapp.com/",
         title: "Calculator",
-        text: "One of the first things I build when I started learning React. Another project for Free Code Camp.",
+        text: "One of the first things I build when I started learning React. Recently redone with Typescript.",
         codelink1: "https://github.com/Bponthemove/calculator",
         codelink1Text: "* Calculator, build with React (oct, 2021).",
-        codelink2: "",
-        codelink2Text: ""
+        codelink2: "https://github.com/Bponthemove/calculatorTS",
+        codelink2Text: "* Calculator, build with React & Typescript (jan, 2022)."
     }
 ]
 
