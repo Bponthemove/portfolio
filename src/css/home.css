@@ -34,7 +34,7 @@
 
 .section-h1{
     padding: 1rem 3rem 0 1rem;
-    margin-left: 11rem;
+    margin: 0 auto;
 }
 
 .section-h1-mob{
@@ -45,6 +45,8 @@
 
 .section-h3{
     padding: 1rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .section-h3-mob{
@@ -53,6 +55,8 @@
 
 .section-p{
     padding: 1rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .section-p-mob{
