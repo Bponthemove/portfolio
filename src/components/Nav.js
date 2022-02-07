@@ -27,13 +27,13 @@ const Nav = () => {
                 <div className={ deviceClass === 'mobile' ? 'nav-personal-container nav-personal-container-mob' : 'nav-personal-container' }>
                     Bram peter van Zalk
                 </div> }
-                <IconContext.Provider value={{  color: '#fff2cf', 
+                <IconContext.Provider value={{  color: '#586f7c', 
                                                 size: '3rem', 
                                                 className: deviceClass === 'mobile' ? 'menu-icon' : 'hidden' 
                                                 }}
                 >
                     <div onClick={ clickHandler } className="hamburger-container">
-                        { click ? <FaTimes color='#fdfffc' /> : <FaBars color='#fdfffc' /> }
+                        { click ? <FaTimes color='#586f7c' /> : <FaBars color='#586f7c' /> }
                     </div>
                 </IconContext.Provider>
                 <ul className={ deviceClass !== 'mobile' ? 'nav-links-pc' : click ? 'nav-links-mobile-open' : 'nav-links-mobile-closed' }>

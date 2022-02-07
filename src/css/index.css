@@ -37,6 +37,10 @@ main{
   opacity: 0.6;
 }
 
+.main__notFound{
+  margin: 10em;
+}
+
 .login-form{
   grid-area: main;
   padding-top: 2rem;

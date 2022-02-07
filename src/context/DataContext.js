@@ -37,6 +37,7 @@ export const DataProvider = ({children}) => {
     const [sectionActive, setSectionActive] = useState('intro')
     
     const inputRef = useRef()
+    const homeRef = useRef(null)
     const introRef = useRef(null)
     const aboutRef = useRef(null)
     const skillsRef = useRef(null)
@@ -51,6 +52,7 @@ export const DataProvider = ({children}) => {
     const { orientation, touchScreen: touch, deviceClass } = useScreenDetails()[0]
 
     const sections = [
+        { link: "home", ref: homeRef},
         { link: "intro", ref: introRef },
         { link: "about", ref: aboutRef },
         { link: "skills", ref: skillsRef },

@@ -5,7 +5,7 @@ import { DataContext } from '../context/DataContext'
 
 export const NavLinks = ({ link, clickHandler }) => {
     const { location, sectionActive, deviceClass } = useContext(DataContext)   
-    
+    console.log(location)
     return (
         <li>
             {link === '/' || link==='/blog' ? 
@@ -19,7 +19,9 @@ export const NavLinks = ({ link, clickHandler }) => {
                                 : 'nav-link' }
 //id to overwrite active class for different background color when scrolling
                     // id={link}
-                    id={link === '/' &&  (sectionActive === 'about' || sectionActive === 'code') ? 'selected-orange' : ''}
+                    id={ location.pathname === '/' && link === '/' && (sectionActive === 'about' || sectionActive === 'code') ? 'selected-orange' 
+                            : location.pathname === '/' && link === '/' && (sectionActive === 'intro' || sectionActive === 'skills') ? 'selected'
+                            : '' }
                     onClick={ deviceClass === 'mobile' ? clickHandler : null }
                 >
                     { link === '/' ? 'Home' : 'Blog' }

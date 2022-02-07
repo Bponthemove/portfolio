@@ -25,6 +25,9 @@
     background-color: #586f7c;
     opacity: 0.8rem;
     display: flex;
+    box-shadow: 6px 6px 8px -6px #586f7c, 6px -6px 8px -6px #586f7c;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-personal-container{
@@ -38,6 +41,7 @@
 }
 
 .nav-personal-container-mob{
+    color: #586f7c;
     font-size: 1.8rem;
     transform-origin: 50% -60%;
 }
@@ -52,11 +56,12 @@
 }
 
 .nav-mobile{
+    position: relative;
+    z-index: 1;
     grid-area: navbar;
-    background-color: #586f7c;
+    box-shadow: 0px 8px 8px -5px #586f7c;
     padding-right: 2rem;
     display: flex; 
-    justify-content: flex-end; 
 }
 
 .nav-links-mobile-closed{
@@ -74,6 +79,7 @@
 .nav-links-mobile-open{
     position: fixed;
     background-color: #586f7c;
+    color: #F9EACF;
     right: 0px;
     top: 3.24rem;
     width: 30%;
@@ -122,28 +128,25 @@
     font-weight: 400;
 }
   
-/* @media (hover: hover) {
-    .nav-link:hover{
-        color: #e71d36;
+@media (min-width > 768) {
+    .nav-link.active{
+        border: none;
+        background-color: #fdfffc;
+        color: #011627;
+        font-size: 1.2rem;
+        cursor: default;
     }
-} */
-  
-.nav-link.active, .nav-mobile.active{
-    border: none;
-    background-color: #fdfffc;
-    color: #011627;
-    font-size: 1.2rem;
-    cursor: default;
 }
 
-.selected{
+#selected, .selected{
     background-color: #fdfffc;
     color: #011627;
     cursor: default;
 }
 
 #selected-orange, .selected-orange{
-    background-color: #eec170;
+    background-color: #F9EACF;
+    color: #011627;
 }
 
 .dimmed{

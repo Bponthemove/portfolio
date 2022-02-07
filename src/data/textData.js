@@ -157,7 +157,7 @@ const code = [
         codelink1: "https://github.com/Bponthemove/calculator",
         codelink1Text: "* Calculator, build with React (oct, 2021).",
         codelink2: "https://github.com/Bponthemove/calculatorTS",
-        codelink2Text: "* Calculator, build with React & Typescript (jan, 2022)."
+        codelink2Text: "* Calculator, rebuild with React & Typescript (jan, 2022)."
     }
 ]
 
