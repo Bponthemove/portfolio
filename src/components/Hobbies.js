@@ -32,21 +32,15 @@ export const Hobbies = () => {
 
     return (
         <>
-            { deviceClass === 'mobile' && <p className='hobbies-intro-span-static hobbies-intro-span-static-mob'>Things I love to do in my time off..</p>}
-            <div className={ deviceClass === 'laptop/tablet' && orientation === 'landscape' ? 'hobbies-container hobbies-container-laptop' 
-                                : deviceClass === 'mobile' ? 'hobbies-container hobbies-container-mob' 
-                                : 'hobbies-container' }
-            >
+            { deviceClass === 'mobile' && <p className='hobbies-intro-span-static'>Things I love to do in my time off..</p>}
+            <div className='hobbies-container'>
                 <div className='hobbies-background'>
                 </div>
-                <div    className={ deviceClass !== 'mobile' ? 'hobbies-intro-appear' :'hobbies-intro-appear hobbies-intro-appear-mob' } 
+                <div    className='hobbies-intro-appear' 
                         key={ hobbyImg1 }
                 >
                     { deviceClass !== 'mobile' && <span className='hobbies-intro-span-static'> Things I love to<br/>do in my time off.. </span> }
-                    <span className={ deviceClass !== 'mobile'  && delay === null ? 'hobbies-intro-span-rolling' 
-                                        : deviceClass !== 'mobile' && delay === 8000 ? 'hobbies-intro-span-rolling hobbies-animation'
-                                        : deviceClass === 'mobile' && delay === 8000 ? 'hobbies-intro-span-rolling hobbies-intro-span-rolling-mob hobbies animation'
-                                        : 'hobbies-intro-span-rolling hobbies-intro-span-rolling-mob' }>
+                    <span className={ delay === null ? 'hobbies-intro-span-rolling' : 'hobbies-intro-span-rolling hobbies-animation' } >
                         { hobbyText }
                     </span>
                     <p className='hobbies-intro-line'></p>

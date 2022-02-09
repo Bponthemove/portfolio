@@ -104,9 +104,9 @@ export const DataProvider = ({children}) => {
       //on browser refresh, go back to top of home
     useEffect(() => {
       if (window.performance.getEntriesByType('navigation')[0].type === 'reload') {
-        navigate('/#intro')
-        setSectionActive('intro')
-        location.hash = '#intro'      
+        navigate('/')
+        setSectionActive('home')
+        location.hash = ''      
       }
     }, [])
 
@@ -126,6 +126,10 @@ export const DataProvider = ({children}) => {
       } 
     }, [search])
 
+    useEffect(() => {
+      if (location.pathname === '/') scrollHandler()
+    }, [location])
+
 //authorization init and env details for cloudinary
     const auth = async() => {
       try {
@@ -144,12 +148,13 @@ export const DataProvider = ({children}) => {
         //nav mobile menu open or closed
     const clickHandler = () => setClick(!click) 
 
-        //keeping track of scroll position in sections on home page
+        //keeping track of scroll position in sections on home page to adjust nav and header
     const scrollHandler = () => {
       if (click) setClick(!click)
       let offset = 0
       orientation === 'portrait' ? offset = topOnInit + 2 : offset = topOnInit + 4
       const { height, top } = introRef.current.getBoundingClientRect()
+      if (offset < top) return setSectionActive('home')
       if ((offset - height) < top) return setSectionActive('intro')
       if ((offset - (height * 2)) < top) return setSectionActive('about')
       if ((offset - (height * 3)) < top) return setSectionActive('skills')

@@ -14,21 +14,19 @@ const SectionHome = ({ section, index }) => {
             return (
                 <section    id={link}
                             ref={ref}
-                            className={ index % 2 !== 0 && orientation === 'landscape' ? 'section section-toggle' 
-                                        : index % 2 !== 0 && orientation === 'portrait' ? 'section section-toggle section-portrait' 
-                                        : index % 2 === 0 && orientation === 'portrait' ? 'section section-portrait'
-                                        : 'section' }
+                            className={ index % 2 !== 0  ? 'section section-toggle' : 'section' }
                 >
-                    <h1 className={deviceClass !== 'mobile' ? 'section-h1': 'section-h1 section-h1-mob' }>
-                        {   link === 'home' ? text.intro.h1
+                    <h1>
+                        {   link === 'home' ? text.intro.h1.top
                             : link === 'intro' ? ''
                             : link === 'about' ? text.about.h1
                             : link === 'skills' ? text.skills.h1
                             : text.code.h1    
                         }
                     </h1>
+                    { link === 'home' && <h2>{ text.intro.h1.bottom }</h2>}
                     { (deviceClass !== 'mobile' || (deviceClass === 'mobile' && link === 'intro')) &&
-                    <h3 className= {deviceClass !== 'mobile' ? 'section-h3': 'section-h3 section-h3-mob' }>
+                    <h3>
                         {   link === 'home' ? ''
                             : link === 'intro' ? text.intro.h3
                             : link === 'about' ? text.about.h3
@@ -36,7 +34,7 @@ const SectionHome = ({ section, index }) => {
                             : text.code.h3    
                         }
                     </h3> }
-                    <p className={ deviceClass !== 'mobile' ? 'section-p' : 'section-p-mob' }>
+                    <p className={deviceClass === 'laptop/tablet' && orientation === 'portrait' ? 'section__p section__p__portrait' : 'section__p' }>
                         {   link === 'home' ? ''
                             : link === 'intro' ? text.intro.p
                             : link === 'about' ? text.about.p
@@ -51,14 +49,16 @@ const SectionHome = ({ section, index }) => {
                         <AboutItem pastTrades={pastTrades}/>
                     }
                     {link === 'skills' && 
-                        <div className={ deviceClass !== 'mobile' ? 'skills-list-container' : 'skills-list-container skills-list-container-mob' }>
-                            <SkillsDevelopment/>
+                        <div className='skills-list-container'>
                             <SkillsLife/>
+                            <SkillsDevelopment/>
                         </div>    
                     }
                     {link === 'code' && 
                         <div className='code-container'>
-                            <CodeBlock/>    
+                            <div className='code-container-inside'>
+                                <CodeBlock/>
+                            </div>    
                         </div>}
                 </section>
             )

@@ -4,13 +4,11 @@ import { DataContext } from '../context/DataContext'
 import '../css/icons.css'
 
 export const Icons = ({ postId, likes, dislikes, comments }) => {
-    const { deleteHandle, deviceClass, thumbsHandle, commentsHandle } = useContext(DataContext)
+    const { deleteHandle, thumbsHandle, commentsHandle } = useContext(DataContext)
     
 
     return (
-        <div className={deviceClass ==='mobile' ? 'icons-container-inner icons-container-inner-mobile'
-                                    : 'icons-container-inner icons-container-inner-pc'}
-        >   
+        <div className='icons-container-inner'>   
             <div>
                 <FaRegThumbsUp className='icon' onClick={() => thumbsHandle(postId, 'up')}/>
                 <span>{likes}</span>

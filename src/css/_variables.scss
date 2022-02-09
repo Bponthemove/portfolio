@@ -1,0 +1,34 @@
+//_________________colors_______________//
+
+$color-white: #fdfffc;
+$color-lightorange: #F9EACF;
+$color-medgrey: #9fa9af;
+$color-darkgrey: #586f7c;
+$color-darkdarkgrey: #2f4550;
+$color-black: #011627;
+$color-iconblue: #4880f6;
+$color-lightblue: #b8dbd9;
+$color-lightred: #f18080;
+$color-red: #f56c6c;
+
+//_________________mixin_______________//
+
+@mixin on-hover {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin laptop{
+    @media(min-width: 900px) {
+        @content;
+    }
+}
+
+@mixin not-mobile{
+    @media(min-width: 768px) {
+        @content;
+    }
+}

@@ -49,6 +49,8 @@ const lifeSkills = [
     "fluent in English, Dutch and German.",
     "Reasonable understanding of French",
     "Great people skills",
+    "Great management skills",
+    "Team player",
     "Able to see the big picture",
     "Self confident",
     "Very keen on learning new things",
@@ -87,7 +89,8 @@ const pastTrades = [
 
 const text = {
     intro: {
-        h1: "Hi, I'm Bram",
+        h1: {   top: "Hi,",
+                bottom: "I am Bram."},
         h3: "I am a self-taught hoping to be (one day) developer who is looking for a great place to develop and to be developed.",
         p: "Never too old to learn something new is definitely something that applies to me.  Having done various things in various places in life, 2021 was the year I decided to have a go at web development.  I am now looking for a role somewhere, where I can contribute and learn.  Please have a look around and feel free to leave me a message, some advice or just some encouragement!"
     },
@@ -97,7 +100,7 @@ const text = {
         p: "These are the things that have kept me busy over the last 25 years. In addition to that I also have three young children who are full of life. I am someone who needs to be challenged, to be learning/trying new things in life all the time. Both on the professional and personal side of life."
     },
     skills: {
-        h1: "Things I have learned so far",
+        h1: "Skills",
         h3: "A quick overview of all the things that make me ME.",
         p: "At the moment I am learning to become more comfortable with the subjects that I have learned so far with the addition of TypeScript. Personally I feel that it is better to learn the current subjects more in depth than trying to learn as many as possible, but only touching the surface."
     },

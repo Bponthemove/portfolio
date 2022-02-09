@@ -1,19 +1,26 @@
-.header-pc, .header-tablet{
-    grid-area: header;
-    background-color: #fdfffc;
-    color: #011627;
-    display: flex; 
-    justify-content: center;
+.header {
+  grid-area: header;
+  background-color: #fdfffc;
+  color: #011627;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.header-text-container{
+.header-text-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 50vw;
-  transform: translateX(35%);
+  -webkit-transform: translateX(35%);
+          transform: translateX(35%);
   padding: 0.7rem 0;
 }
 
-.header-text1{
+.header-text-container .header-text1 {
   font-size: 1rem;
   letter-spacing: .25rem;
   text-shadow: 0px 1px 1px #586f7c;
@@ -21,38 +28,58 @@
   padding-bottom: 0.1rem;
 }
 
-.header-text2{
+.header-text-container .header-text2 {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
   max-width: fit-content;
   padding-bottom: 0.1rem;
   font-size: 1rem;
   text-shadow: 0px 1px 1px #586f7c;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
-  border-right: .22rem solid #586f7c;
-  letter-spacing: .25rem; 
-  animation: 
-    typing 5.5s steps(60, end),
-    blink-caret .95s step-end infinite;
+  border-right: 0.22rem solid #586f7c;
+  letter-spacing: .25rem;
+  -webkit-animation: typing 5.5s steps(60, end), blink-caret 0.95s step-end infinite;
+          animation: typing 5.5s steps(60, end), blink-caret 0.95s step-end infinite;
 }
 
-.header-background-toggle{
+.header-background-toggle {
   background-color: #F9EACF;
 }
 
-.header-away1{
-  opacity: 0;
-}
-
-.header-away2{
-  position: absolute;   
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #586f7c;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #586f7c; }
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #586f7c;
+  }
 }
+/*# sourceMappingURL=header.css.map */

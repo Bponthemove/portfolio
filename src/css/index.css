@@ -1,80 +1,90 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-html, body{
+html, body {
   width: 100vw;
   font-family: 'Lora', serif;
   letter-spacing: 0.6px;
-  background-color: #fdfffc; 
-  /* overflow: hidden; */
+  background-color: #fdfffc;
+  overflow-x: hidden;
 }
 
-.app{
+.app {
   height: 100vh;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas: 
-    'header'
-    'navbar'
-    'main'
-    'footer';
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  -ms-grid-rows: auto auto 1fr auto;
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas: 'header' 'navbar' 'main' 'footer';
 }
 
-main{
+main {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: main;
   overflow-y: hidden;
 }
 
-#mainNavClosed *{
+#mainNavClosed * {
   opacity: 1;
 }
 
-#mainNavOpen *{
+#mainNavOpen * {
   opacity: 0.6;
 }
 
-.main__notFound{
+.main__notFound {
   margin: 10em;
 }
 
-.login-form{
+.login-form {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: main;
-  padding-top: 2rem;
+  padding-top: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
   z-index: 0;
 }
 
-.signup-form{
+.signup-form {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
   grid-area: main;
-  padding-top: 2rem;
+  padding-top: 2em;
   z-index: 0;
 }
 
 ::-webkit-scrollbar {
-  width: 0.4rem;
+  width: 0.4em;
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 0.4rem;  
+  border-radius: 0.4em;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #586f7c; 
+  background: #586f7c;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2f4550; 
-  box-shadow: inset 0 0 5px #586f7c;
+  background: #011627;
+  -webkit-box-shadow: inset 0 0 5px #586f7c;
+          box-shadow: inset 0 0 5px #586f7c;
 }
-
-
-
-
-
+/*# sourceMappingURL=index.css.map */

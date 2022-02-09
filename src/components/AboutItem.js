@@ -23,7 +23,6 @@ export const AboutItem = ({ pastTrades }) => {
                     className={ deviceClass === 'pc' && !touch ? 'about-item-container about-item-container-grid' 
                                 : deviceClass === 'laptop/tablet' && !touch ? 'about-item-container about-item-container-grid about-item-container-landscape'
                                 : touch && deviceClass !== 'mobile' && orientation === 'landscape' ? 'about-item-container about-item-container-flex about-item-container-landscape' 
-                                : deviceClass === 'mobile' && orientation === 'portrait' ? 'about-item-container about-item-container-flex about-item-container-flex-portrait about-item-container-mob'
                                 : 'about-item-container about-item-container-flex about-item-container-flex-portrait'
                             }
             > 
@@ -33,7 +32,7 @@ export const AboutItem = ({ pastTrades }) => {
                                         :'about-img-container about-img-container-touch-landscape' }> 
                         { cloudName && deviceClass !== 'mobile' &&
                             <Image  cloudName={ cloudName }  
-                                    className={ deviceClass === 'laptop/tablet' && orientation === 'landscape' && !touch ? 'image1 image1-laptop' 
+                                    className={ deviceClass === 'laptop/tablet' && orientation === 'landscape' && !touch ? 'image1 image-laptop' 
                                                 : touch && deviceClass !== 'mobile' && orientation === 'portrait' ? 'image1 image1-portrait'
                                                 : touch && deviceClass !== 'mobile' && orientation === 'landscape' ? 'image1 image1-landscape' 
                                                 : 'image1' } 
@@ -42,7 +41,7 @@ export const AboutItem = ({ pastTrades }) => {
                             /> }
                         { cloudName && deviceClass !== 'mobile' &&
                             <Image  cloudName={ cloudName }  
-                                    className={ orientation === 'landscape' && deviceClass === 'laptop/tablet' && !touch ? 'image2 image2-laptop' 
+                                    className={ orientation === 'landscape' && deviceClass === 'laptop/tablet' && !touch ? 'image2 image-laptop' 
                                                 : touch && deviceClass !== 'mobile' && orientation === 'portrait' ? 'image2 image2-portrait'
                                                 : touch && deviceClass !== 'mobile' && orientation === 'landscape' ? 'image2 image2-landscape' 
                                                 : 'image2' } 

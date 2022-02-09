@@ -5,24 +5,23 @@ import { DataContext } from '../context/DataContext'
 
 export const NavLinks = ({ link, clickHandler }) => {
     const { location, sectionActive, deviceClass } = useContext(DataContext)   
-    console.log(location)
+    
     return (
-        <li>
+        <li className='nav-link'>
             {link === '/' || link==='/blog' ? 
 //navLink does not do hash 'anchor' links, so use hashLink for internal page links
                 <Link   
-                    end to={ link === '/' ? '/' 
-                            : link === '/blog' ? '/blog' : null } 
+                    end to={    link === '/' ? '/' 
+                                : link === '/blog' ? '/blog' : null } 
 //dimmed class to dimm blog when you are home and vice versa
-                    className={ location.pathname === '/' && link === '/blog' ? 'nav-link dimmed'
-                                : location.pathname !== '/' && link === '/' ? 'nav-link dimmed' 
-                                : 'nav-link' }
-//id to overwrite active class for different background color when scrolling
-                    // id={link}
-                    id={ location.pathname === '/' && link === '/' && (sectionActive === 'about' || sectionActive === 'code') ? 'selected-orange' 
-                            : location.pathname === '/' && link === '/' && (sectionActive === 'intro' || sectionActive === 'skills') ? 'selected'
-                            : '' }
-                    onClick={ deviceClass === 'mobile' ? clickHandler : null }
+                    id={    location.pathname === '/' && link === '/' && (sectionActive === 'home' || sectionActive === 'intro' || sectionActive === 'skills') ? 'selected'
+                            : location.pathname === '/' && link === '/' && (sectionActive === 'about' || sectionActive === 'code') ? 'selected-orange'
+                            : location.pathname === '/blog' && link === 'blog' ? 'selected' 
+                            : location.pathname === '/' && link === '/blog' ? 'dimmed'
+                            : location.pathname !== '/' && link === '/' ? 'dimmed' : '' }
+                    onClick={   deviceClass === 'mobile' ? clickHandler 
+                                : deviceClass !== 'mobile' && link === '/' ? () => window.scrollTop(0) 
+                                : null }
                 >
                     { link === '/' ? 'Home' : 'Blog' }
                 </Link>
@@ -32,18 +31,14 @@ export const NavLinks = ({ link, clickHandler }) => {
                     to={    link === '#intro' ? '/#intro'
                             : link === '#about' ? '/#about'
                             : link === '#skills' ? '/#skills' : '/#code' }
-                    // id={link}
-                    className={
-//mimic active links 
-                        location.pathname !== '/' ? 'nav-link nav-hashlink off'
-// when scrolling make links active
-                        : link === '#intro' && sectionActive === 'intro' && location.pathname === '/' ?  'nav-link nav-hashlink selected'
-                        : link === '#about' && sectionActive === 'about' ? 'nav-link nav-hashlink selected selected-orange'
-                        : link === '#skills' && sectionActive === 'skills' ? 'nav-link nav-hashlink selected'
-                        : link === '#code' && sectionActive === 'code' ? 'nav-link nav-hashlink selected selected-orange' 
-                        : 'nav-link nav-hashlink' }
+                    id ={   location.pathname === '/' && link === '#intro' && sectionActive === 'intro' ? 'selected'
+                            : location.pathname === '/' && link === '#about' && sectionActive === 'about' ? 'selected-orange'
+                            : location.pathname === '/' && link === '#skills' && sectionActive === 'skills' ? 'selected'
+                            : location.pathname === '/' && link === '#code' && sectionActive === 'code' ? 'selected-orange' 
+                            : location.pathname !== '/' ? 'dimmed' : '' }
+                    className='hash-link'
                 >
-                    { link === '#intro' ? 'Intro' 
+                    {   link === '#intro' ? 'Intro' 
                         : link === '#about' ? 'About'
                         : link === '#skills' ? 'Skills' : 'Code' }
                 </HashLink>

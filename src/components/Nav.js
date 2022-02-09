@@ -22,7 +22,7 @@ const Nav = () => {
             { !cloudName && deviceClass !== 'mobile' &&
                 <div className='nav-img nav-img-loading'>...</div>
             }
-            <nav ref={ navRef } className={ deviceClass !== 'mobile' ? 'nav-pc' : 'nav-mobile' }>
+            <nav ref={ navRef } className="nav">
                 { (deviceClass === 'mobile' || orientation === 'landscape') &&
                 <div className={ deviceClass === 'mobile' ? 'nav-personal-container nav-personal-container-mob' : 'nav-personal-container' }>
                     Bram peter van Zalk
@@ -36,7 +36,7 @@ const Nav = () => {
                         { click ? <FaTimes color='#586f7c' /> : <FaBars color='#586f7c' /> }
                     </div>
                 </IconContext.Provider>
-                <ul className={ deviceClass !== 'mobile' ? 'nav-links-pc' : click ? 'nav-links-mobile-open' : 'nav-links-mobile-closed' }>
+                <ul className={ deviceClass !== 'mobile' ? 'nav-links' : click ? 'nav-links-mobile nav-links-mobile-open' : 'nav-links-mobile nav-links-mobile-closed' }>
                     { ['/', '#intro', '#about', '#skills', '#code', '/blog'].map((link, index) => 
                         <NavLinks 
                             clickHandler={clickHandler}

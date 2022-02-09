@@ -33,22 +33,20 @@ const PostPage = () => {
             {!post && <p>...is loading...</p>}
             {post && 
                 <main id={ click ? 'mainNavOpen' : 'mainNavClosed' }>
-                    <div className={    deviceClass === 'laptop/tablet' && orientation === 'landscape' ? 'postpage-post postpage-post-max-height postpage-post-centered' 
-                                        : deviceClass === 'mobile' && orientation === 'portrait' ? 'postpage-post postpage-post-mob' 
-                                        : orientation === 'landscape' ? 'postpage-post postpage-post-centered' : 'postpage-post' 
-                        }
+                    <div className={    deviceClass === 'laptop/tablet' && orientation === 'landscape' ? 'postpage-post postpage-post-max-height postpage-post-centered'  
+                                        : orientation === 'landscape' ? 'postpage-post postpage-post-centered' : 'postpage-post' }
                     >
-                        <div className={ deviceClass !== 'mobile' ? 'postpage-post-header' : 'postpage-post-header postpage-post-header-mob' }>
+                        <div className='postpage-post-header'>
                             <h1>{ post.Title }</h1>
-                            <Link to='/blog'><ImCross size='1.6rem'/></Link>
+                            <Link to='/blog'><ImCross size='1.6em'/></Link>
                         </div>
                         <div className='post-overflow-container'>
                             <h4>{ post.Time }</h4>
                             <p>{ post.Text }</p>
-                            <div className={ deviceClass === 'mobile' ? 'icons-container-postpage icons-container-postpage-mob' : 'icons-container-postpage icons-container-postpage-pc' }>
+                            <div className='icons-container-postpage'>
                                 <IconContext.Provider  
-                                    value= { deviceClass === 'mobile' ? { size: '1.5rem', color: '#2f4550' } :
-                                                            { size: '1rem', color: '#2f4550' } }
+                                    value= { deviceClass === 'mobile' ? { size: '1.5em', color: '#2f4550' } :
+                                                            { size: '1em', color: '#2f4550' } }
                                 >
                                 <Icons  postId={ post._id } 
                                         likes={ post.Likes } 
@@ -58,10 +56,7 @@ const PostPage = () => {
                                 />
                                 </IconContext.Provider> 
                             </div>
-                            <form 
-                                
-                                className={ deviceClass === 'mobile' ? 'comment-form comment-form-mob' : 'comment-form' }
-                                >
+                            <form className='comment-form' >
                                 <label htmlFor='comment'>Comment</label>
                                 <input
                                     type='text'
@@ -74,7 +69,7 @@ const PostPage = () => {
                                 />
                                 <button type='submit' onClick={e => submitCommentHandle(e, post._id)}>Post</button>
                             </form>
-                            <div className={ deviceClass !== 'mobile' ? 'comments-container' : 'comments-container comments-container-mob' }>
+                            <div className='comments-container' >
                                 <Comment comments={ post.Comments }/>    
                             </div>
                         </div> 

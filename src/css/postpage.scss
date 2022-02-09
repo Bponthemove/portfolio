@@ -1,0 +1,190 @@
+@import '../css/_variables.scss';
+
+.postpage-post{
+    background-color: $color-lightblue;
+    padding: 1em;
+    max-height: 84.5vh;
+    margin: 0.5em;
+    border-radius: 0.8em;
+    overflow-y: scroll;
+
+    @include not-mobile{
+        margin: 2em;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        max-width: 900px;
+    }
+
+    .postpage-post-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $color-darkdarkgrey;
+        border-radius: 0.8em;
+        padding: 0.5em;
+        white-space: pre-wrap;
+
+        @include not-mobile{
+            padding: 0.3em 2.5em;
+            white-space: nowrap;
+        }
+        
+        & > h1{
+            overflow: visible;
+            font-size: 1.1em;
+            width: 70%;
+            padding: 0.2em 0;
+            color: $color-white;
+
+            @include not-mobile{
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        
+        & > a{
+            text-decoration: none;
+            background-color: $color-darkdarkgrey;
+            color: $color-white;
+        }
+    }
+    
+    .post-overflow-container{
+        overflow-y: scroll;
+
+        @include not-mobile{
+            padding: 0 2em;
+        }
+        
+        & > h4{
+            font-size: 0.8em;
+            margin-left: 0.8em;
+            letter-spacing: 1px;
+            width: 30%;
+            border-bottom: 2px solid $color-darkdarkgrey;
+            padding: 0.8em 2.5em;
+            white-space: nowrap;
+        }
+
+        & > p{
+            padding: 0.8em 0.5em;
+            line-height: 1.3em;
+            border-bottom: 2px solid $color-darkdarkgrey;
+        }
+
+        .icons-container-postpage{
+            padding: 1.5em 0.5em;
+            width: 100%;
+
+            @include not-mobile{
+                width: 30%;
+            }
+        }
+
+        .comment-form{
+            display: flex;
+            justify-content: space-around;
+            margin: 0.4em 0;
+            
+            @include not-mobile{
+                margin: 0.8em 0;
+                justify-content: space-between;
+            }
+
+            label{
+                display: none;
+            }
+            
+            #inputComment{
+                flex: 1;
+                border: 2px solid $color-black;
+                border-radius: 0.8em;
+                padding: 0.5em;
+                margin-left: 1.5em;
+            }
+            
+            & > button{
+                flex: 0;
+                margin-left: 1.5em;
+                border: none;
+                background-color: $color-red;
+                color: $color-white;
+                letter-spacing: 1px;
+                border-radius: 0.4em;
+                cursor: pointer;
+                padding: 0.4em 1em;
+                
+                @include not-mobile{
+                    transition: 0.2s;
+                }
+
+                @include on-hover{
+                    background-color: $color-lightred;
+                }
+            }
+
+        }
+        
+        .comments-container{
+            overflow-y: hidden;
+            padding: 0.8em 0.8em 0.8em 0;
+
+            @include not-mobile{
+                overflow: hidden;
+                overflow-y: scroll;                
+            }
+            .comments-btn{
+                border: none;
+                background-color: $color-darkdarkgrey;
+                color: $color-white;
+                border-radius: 0.4em;
+                padding: 0.4em 1em;
+                margin-bottom: 0.5em;
+                cursor: pointer;
+                transition: 0.5s;
+            }
+            
+            .all-comments-btn{
+                background-color: $color-red;
+
+                @include on-hover{
+                    background-color: $color-lightred;
+                }
+            }
+            
+            .comment{
+                padding: 0.8em 0.5em;
+                margin-bottom: 0.5em;
+                background-color: $color-white;
+                border-radius: 0.4em;
+            
+                .comment-time{
+                    padding-bottom: 0.3em;
+                    font-size: 0.8em;
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+    
+}
+
+.postpage-post-centered{
+    margin: 1em auto;
+}
+
+.postpage-post-max-height{
+    max-height: 78vh;
+}
+
+
+
+
+
+
+
+
+
+

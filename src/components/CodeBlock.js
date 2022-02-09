@@ -4,7 +4,7 @@ import { Image } from 'cloudinary-react'
 import { code } from '../data/textData'
 
 export const CodeBlock = () => {
-    const { orientation, cloudName, touch, deviceClass } = useContext(DataContext)
+    const { cloudName, touch, deviceClass } = useContext(DataContext)
     const [hover, setHover] = useState(false)
     const [target, setTarget] = useState({
         top: null,
@@ -15,13 +15,9 @@ export const CodeBlock = () => {
         code.map((item, index) => 
             <div key={ index } className={  index % 2 === 0 && deviceClass !== 'mobile' && !touch ? 'code-block-container' 
                                             : index % 2 !== 0 && deviceClass !== 'mobile' && !touch ? 'code-block-container code-block-container-right'
-                                            : index % 2 === 0 && orientation === 'portrait' && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-portrait code-block-container-touch'
-                                            : index % 2 !== 0 && orientation === 'portrait' && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch'
-                                            : index % 2 === 0 && orientation === 'landscape' && touch ? 'code-block-container code-block-container-touch'
-                                            : index % 2 !== 0 && orientation === 'landscape' && touch ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch' 
-                                            : index % 2 === 0 && orientation === 'portrait' && touch ? 'code-block-container code-block-container-portrait code-block-container-touch code-block-container-mob'
-                                            :index % 2 !== 0 && orientation === 'portrait' && touch ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch code-block-container-mob'
-                                            : ''
+                                            : index % 2 === 0 && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-portrait code-block-container-touch'
+                                            : index % 2 !== 0 && touch && deviceClass !== 'mobile' ? 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch'
+                                            : 'code-block-container code-block-container-right code-block-container-portrait code-block-container-touch' 
                                         }
             >
                 { !touch && <div className={ hover ? 'tooltip tooltip-visible' : 'tooltip' } style={{top: target.top, left: target.left}}>Go to App</div> }
@@ -29,7 +25,7 @@ export const CodeBlock = () => {
                     onMouseMove={e => {
                         setTarget({
                             top: e.clientY - 300,
-                            left: e.clientX 
+                            left: e.clientX -60
                         })
                         setHover(true)
                     }}

@@ -7,20 +7,19 @@ import { Link } from 'react-router-dom'
 import { blog } from '../data/textData'
 
 const Blog = () => {
-    const { deviceClass, orientation, click, search, setSearch, posts, filteredPosts, isLoading, blogRef, cloudName } = useContext(DataContext)
+    const { deviceClass, click, search, setSearch, posts, filteredPosts, isLoading, blogRef, cloudName, touch } = useContext(DataContext)
     
     return (
         <>  
             { isLoading && <p style={{ width: '100%' , textAlign: 'center' }} >....is currently loading....</p> }
             { !isLoading && posts.length === 0 && <p>No posts to display</p>} 
             { !isLoading && posts.length !== 0 &&
-                <main   className={ deviceClass === 'mobile' ? 'main-blog main-blog-mobile' : 'main-blog' } 
+                <main   className='main-blog' 
                         id={ click ? 'mainNavOpen' : 'mainNavClosed' }
                         ref={blogRef}
                 >
-                    <div className={    deviceClass !== 'pc' && orientation === 'landscape' ? 'main-left main-left-laptop' 
-                                        : deviceClass === 'mobile' ? 'main-left main-left-mobile' : 'main-left' }>
-                        <h2>{ blog.h2 }</h2>
+                    <div className= 'main-left'>
+                        { deviceClass === 'laptop/tablet' && !touch ? null : <h2>{ blog.h2 }</h2> }
                         <p>{ blog.p }</p>
                         { cloudName && <Image 
                                                 cloudName={ cloudName }

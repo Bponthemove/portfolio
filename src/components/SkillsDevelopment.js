@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { IconContext } from 'react-icons/lib'
-import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaGithub, FaGit } from 'react-icons/fa'
+import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaGithub, FaGit, FaSass } from 'react-icons/fa'
 import { SiJavascript, SiMongodb, SiExpress } from 'react-icons/si'
 import { DataContext } from '../context/DataContext'
 
@@ -9,10 +9,9 @@ export const SkillsDevelopment = () => {
 
     return (
         <IconContext.Provider
-            value= {    deviceClass === 'pc' ? { size: '3.5rem', color: '#4880f6' }
-                        : deviceClass ==='laptop/tablet' && orientation === 'portrait' ? { size: '3rem', color: '#4880f6'}
-                        : deviceClass === 'mobile' ? { size: '1.5rem', color: '#4880f6'}
-                        : { size: '2.5rem', color: '#4880f6' }
+            value= {    deviceClass === 'laptop/tablet' && orientation === 'landscape' ? { size: '2.5em', color: '#4880f6' }
+                        : deviceClass === 'mobile' ? { size: '1.5em', color: '#4880f6'}
+                        : { size: '4.5em', color: '#4880f6' }
                     }
         >
             <div className={deviceClass !== 'pc' && orientation === 'landscape' ? 'dev-skills-container dev-skills-container-laptop' : 'dev-skills-container'}>
@@ -23,6 +22,10 @@ export const SkillsDevelopment = () => {
                 <div className='skills-dev'> 
                     <FaCss3Alt/>
                     <p>CSS 3</p>
+                </div>
+                <div className='skills-dev'> 
+                    <FaSass/>
+                    <p>Sass</p>
                 </div>
                 <div className='skills-dev'>
                     <SiJavascript/>

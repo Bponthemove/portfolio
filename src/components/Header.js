@@ -23,10 +23,9 @@ const Header = () => {
     return (
         <>
         { deviceClass !== 'mobile' &&
-            <header className={ deviceClass === 'mobile' ? 'header-mobile'
-                                : location.pathname === '/blog' || location.hash === '#login' ? 'header-pc'
-                                : sectionActive === 'intro' || sectionActive ===  'skills' ? 
-                                'header-pc' : 'header-pc header-background-toggle'}
+            <header className={ location.pathname === '/blog' || location.hash === '#login' ? 'header'
+                                : sectionActive === 'intro' || sectionActive ===  'skills' || sectionActive === 'home' ? 
+                                'header' : 'header header-background-toggle'}
             >  
                 <div className="header-text-container">
                     <h1 className="header-text1" key={ qouteText1 }>{ qouteText1 }</h1>

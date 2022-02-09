@@ -8,8 +8,8 @@ export const PostInList = ({ post }) => {
     const { deviceClass, orientation } = useContext(DataContext)
 
     return (
-            <li className={ deviceClass === 'mobile' ? 'link link-mobile' : 'link link-pc' }>
-                <div className={ deviceClass === 'mobile' ? 'link-header link-header-mobile' : 'link-header' }>  
+            <li className='link'>
+                <div className='link-header'>  
                     <Link to={ `/blog/post/${post._id}` }>
                         <h4 className='post-title'>{ post.Title }</h4>
                     </Link>
