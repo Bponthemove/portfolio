@@ -113,6 +113,16 @@ const text = {
 
 const code = [
     {
+        img: 'Portfolio/images/code/newsapp_izr855.png',
+        appLink: "https://amazing-morse-8d93e7.netlify.app/",
+        title: "Breaking news app",
+        text: "A breaking news app, with a big thank you to NewsCatcher.",
+        codelink1: "https://github.com/Bponthemove/news",
+        codelink1Text: "* News app, build using React, Typescript and scss (febr 2022).",
+        codelink2: "",
+        codelink2Text: ""
+    },
+    {
         img: 'Portfolio/images/code/myApp_xxboh7.png',
         appLink: "https://kind-shaw-87f836.netlify.app/",
         title: "Personal app",
