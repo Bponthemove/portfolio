@@ -27,6 +27,12 @@ $color-red: #f56c6c;
     }
 }
 
+@mixin desktop{
+    @media(min-width: 1366px) {
+        @content;
+    }
+}
+
 @mixin not-mobile{
     @media(min-width: 768px) {
         @content;

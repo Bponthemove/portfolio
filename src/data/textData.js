@@ -92,22 +92,24 @@ const text = {
         h1: {   top: "Hi,",
                 bottom: "I am Bram."},
         h3: "I am a self-taught hoping to be (one day) developer who is looking for a great place to develop and to be developed.",
-        p: "Never too old to learn something new is definitely something that applies to me.  Having done various things in various places in life, 2021 was the year I decided to have a go at web development.  I am now looking for a role somewhere, where I can contribute and learn.  Please have a look around and feel free to leave me a message, some advice or just some encouragement!"
+        p1: "Never too old to learn something new is definitely something that applies to me.  Having done various things in various places in life, 2021 was the year I decided to have a go at web development.  I am now looking for a role somewhere, where I can contribute and learn.  Please have a look around and feel free to leave me a message, some advice or just some encouragement!",
+        p2: "I chose to do it the self-taught way, because of family and being able to carry on to work.I come from absolute zero, no coding experience whatsoever. I think however that a lot of skills are transferable. Renovating a bathroom/kitchen is very similar as a thought process. You have to think about the structure, the routes of electrics/plumbing and all the levels and angles, before you start anything.",
+        p3: "I am very interested in clean tech, sustainability and balanced societies and I am hoping to one day contribute to something amazing that will have an big impact on our futures."
     },
     about: {
         h1: "A bit of history",
         h3: `${pastTrades[0].title}, ${pastTrades[1].title}, ${pastTrades[2].title}, ${pastTrades[3].title}, ${pastTrades[4].title}.`,
-        p: "These are the things that have kept me busy over the last 25 years. In addition to that I also have three young children who are full of life. I am someone who needs to be challenged, to be learning/trying new things in life all the time. Both on the professional and personal side of life."
+        p1: "These are the things that have kept me busy over the last 25 years. In addition to that I also have three young children who are full of life. I am someone who needs to be challenged, to be learning/trying new things in life all the time. Both on the professional and personal side of life."
     },
     skills: {
         h1: "Skills",
         h3: "A quick overview of all the things that make me ME.",
-        p: "At the moment I am learning to become more comfortable with the subjects that I have learned so far with the addition of TypeScript. Personally I feel that it is better to learn the current subjects more in depth than trying to learn as many as possible, but only touching the surface."
+        p1: "At the moment I am learning to become more comfortable with the subjects that I have learned so far with the addition of TypeScript. Personally I feel that it is better to learn the current subjects more in depth than trying to learn as many as possible, but only touching the surface."
     },
     code: {
         h1: "Home grown Code",
         h3: "A few projects I have done myself so far.",
-        p: "I have linked some of the old orignal plain Javascript code as well, just to show where I am coming from. Obviously this website is part of it and I try to apply everything I'm learning at the moment to improve all of these. My preferred way of learning new things is to make plenty of mistakes and try to come up with a better solution. Any advice is greatly appreciated, either drop me a message or comment in the blog! (Most are only for desktop screen size as I have been finishing my portfolio first. I will adjust the others soon so that they are responsive)" 
+        p1: "I have linked some of the old orignal plain Javascript code as well, just to show where I am coming from. Obviously this website is part of it and I try to apply everything I'm learning at the moment to improve all of these. My preferred way of learning new things is to make plenty of mistakes and try to come up with a better solution. Any advice is greatly appreciated, either drop me a message or comment in the blog! (Most are only for desktop screen size as I have been finishing my portfolio first. I will adjust the others soon so that they are responsive)" 
     }
 }
 

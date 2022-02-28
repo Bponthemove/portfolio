@@ -33,17 +33,21 @@
         }
         
         &__p{
-            padding: 1em;
+            padding: 0.4em;
             max-width: 900px;
-            margin: 1em;
+            margin: 0.4em;
 
-            @media (min-width: 768px) {
+            @include not-mobile {
                 margin: 0 auto;
+            }
+
+            @include desktop{
+                padding: 1.4em;
             }
         }
         
         &__p__portrait{
-            padding: 2em 12em;
+            padding: 1em 12em;
         }
     }
 
@@ -75,6 +79,10 @@
         text-align: unset;
         font-size: 6em;
         margin: 3em 1em 0;
+
+        @include laptop {
+            margin: 1em 1em 0;
+        }
     }
 
     .h1__laptop{
@@ -100,15 +108,15 @@
 
 .hobbies-container{
     height: 15vh;
-    margin: 1em 0;
+    margin: 2em 0;
     display: grid;
 
-    @include not-mobile {
-        margin: 15vh 0;
+    @include laptop {
+        margin: 1em 0;
     }
 
-    @include laptop {
-        margin: 7vh 0;
+    @include desktop {
+        margin: 6em 0;
     }
 
     /*--seperate div for background so you can style it without affecting the hobbies-intro-appear class--*/

@@ -42,9 +42,9 @@
 }
 
 .main-home .section__p {
-  padding: 1em;
+  padding: 0.4em;
   max-width: 900px;
-  margin: 1em;
+  margin: 0.4em;
 }
 
 @media (min-width: 768px) {
@@ -53,8 +53,14 @@
   }
 }
 
+@media (min-width: 1366px) {
+  .main-home .section__p {
+    padding: 1.4em;
+  }
+}
+
 .main-home .section__p__portrait {
-  padding: 2em 12em;
+  padding: 1em 12em;
 }
 
 .main-home .section-toggle {
@@ -87,6 +93,12 @@
   margin: 3em 1em 0;
 }
 
+@media (min-width: 900px) {
+  #home > h1 {
+    margin: 1em 1em 0;
+  }
+}
+
 #home .h1__laptop {
   margin: 0.5em 1em;
 }
@@ -110,21 +122,21 @@
 
 .hobbies-container {
   height: 15vh;
-  margin: 1em 0;
+  margin: 2em 0;
   display: -ms-grid;
   display: grid;
   /*--seperate div for background so you can style it without affecting the hobbies-intro-appear class--*/
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .hobbies-container {
-    margin: 15vh 0;
+    margin: 1em 0;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1366px) {
   .hobbies-container {
-    margin: 7vh 0;
+    margin: 6em 0;
   }
 }
 

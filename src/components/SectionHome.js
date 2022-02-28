@@ -16,14 +16,15 @@ const SectionHome = ({ section, index }) => {
                             ref={ref}
                             className={ index % 2 !== 0  ? 'section section-toggle' : 'section' }
                 >
-                    <h1>
-                        {   link === 'home' ? text.intro.h1.top
-                            : link === 'intro' ? ''
-                            : link === 'about' ? text.about.h1
-                            : link === 'skills' ? text.skills.h1
-                            : text.code.h1    
-                        }
-                    </h1>
+                    {link !== 'intro' &&
+                        <h1>
+                            {   link === 'home' ? text.intro.h1.top
+                                : link === 'about' ? text.about.h1
+                                : link === 'skills' ? text.skills.h1
+                                : text.code.h1    
+                            }
+                        </h1>
+                    }
                     { link === 'home' && <h2>{ text.intro.h1.bottom }</h2>}
                     { (deviceClass !== 'mobile' || (deviceClass === 'mobile' && link === 'intro')) &&
                     <h3>
@@ -36,12 +37,22 @@ const SectionHome = ({ section, index }) => {
                     </h3> }
                     <p className={deviceClass === 'laptop/tablet' && orientation === 'portrait' ? 'section__p section__p__portrait' : 'section__p' }>
                         {   link === 'home' ? ''
-                            : link === 'intro' ? text.intro.p
-                            : link === 'about' ? text.about.p
-                            : link === 'skills' ? text.skills.p
-                            : text.code.p    
+                            : link === 'intro' ? text.intro.p1
+                            : link === 'about' ? text.about.p1
+                            : link === 'skills' ? text.skills.p1
+                            : text.code.p1
                         }
                     </p>
+                    {deviceClass !== 'mobile' && link === 'intro' &&
+                    <>
+                        <p className={deviceClass === 'laptop/tablet' && orientation === 'portrait' ? 'section__p section__p__portrait' : 'section__p' }>
+                            { text.intro.p2 }
+                        </p>
+                        <p className={deviceClass === 'laptop/tablet' && orientation === 'portrait' ? 'section__p section__p__portrait' : 'section__p' }>
+                            { text.intro.p3 }
+                        </p>                    
+                    </>
+                    }
                     {link === 'intro' &&
                         <Hobbies/>
                     }
