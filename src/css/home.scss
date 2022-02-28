@@ -436,7 +436,7 @@
             }
 
             @include not-mobile{
-                opacity: 0.6;
+                opacity: 1;
                 display: flex;
                 margin: 1em auto;
                 padding: 0.75em;
@@ -445,7 +445,7 @@
             }
 
             @include on-hover{
-                opacity: 1;
+                opacity: 0.6;
                 //scale up image on hovering over entire container
                 a > .img-code{
                     transform: scale(1.05);
