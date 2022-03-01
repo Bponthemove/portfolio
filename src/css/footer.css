@@ -58,4 +58,21 @@ footer #userfront-ddbloa {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
 }
+
+footer .loginBtn {
+  background-color: #f56c6c;
+  color: #fdfffc;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.35em 1.2em;
+  font-size: 0.85em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  footer .loginBtn:hover {
+    background-color: #f18080;
+  }
+}
 /*# sourceMappingURL=footer.css.map */

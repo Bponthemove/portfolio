@@ -39,6 +39,21 @@ footer{
     #userfront-ddbloa{
         transform: scale(0.8);
     }
+
+    .loginBtn{
+        background-color: $color-red;
+        color: $color-white;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 0.35em 1.2em;
+        font-size: 0.85em;
+
+        @include on-hover{
+            background-color: $color-lightred;
+        }
+    }
 }
 
 

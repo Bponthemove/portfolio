@@ -77,6 +77,7 @@ export const DataProvider = ({children}) => {
         })
     }, [ submittedId, deletedId, updatedId, currentUrl ])
 
+        //updating state if there is new data
     useEffect(() => {
       if (data) setPosts(data)
     }, [data])

@@ -31,7 +31,13 @@ const Footer = () => {
                     </Link>
                 </IconContext.Provider>
             </div>
-            { token && <LogoutButton/> }
+            { token ? 
+                <LogoutButton/> 
+                : 
+                <Link
+                    className='loginBtn'
+                    to='/login'
+                >Log in</Link>}
         </footer>
     )
 }

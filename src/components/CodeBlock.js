@@ -24,8 +24,8 @@ export const CodeBlock = () => {
                 <a  href={ item.appLink } target="_blank" rel="noreferrer" className='code-img-container' 
                     onMouseMove={e => {
                         setTarget({
-                            top: e.clientY - 300,
-                            left: e.clientX -60
+                            top: e.target.offsetTop - 35,
+                            left: e.target.offsetLeft -5
                         })
                         setHover(true)
                     }}
