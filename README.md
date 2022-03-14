@@ -1,5 +1,5 @@
-This is my first portfolio site, used for practising full stack while I was learning express, react and mongodb etc.
-I am currently building a new portfolio site without a back end.
+
+This was my first portfolio site, used for practising full stack while I was learning express, react and mongodb etc.
 
 I built this because I wanted to set up a full stak app from scratch for myself, without tutorials boilerplates etc.
 The front end is built with react.
